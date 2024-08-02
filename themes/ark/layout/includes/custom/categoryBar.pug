@@ -1,0 +1,5 @@
+.recent-post-item(style='height:auto;width:100%;padding:0px;')
+  .recent-post-item-headline
+    i.fa-sharp.fa-solid.fa-sim-card
+    span= _p('index.categoryBar')
+  #categoryBar!= list_categories(site.categories,{class: 'categoryBar',depth: 1})

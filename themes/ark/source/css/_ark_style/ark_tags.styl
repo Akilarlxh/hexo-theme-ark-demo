@@ -1,0 +1,146 @@
+//基本样式，保证侧栏和标签页风格一致
+#aside-content .card-tags,
+#page .tag-cloud-list
+  .card-tag-cloud
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    a.ark-tags-box
+      position: relative
+      z-index: 1
+      background: transparent
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+      color: white;
+      font-family: 'UnidreamLED','TaikoMagic';
+      border-radius: 3px;
+      &::before
+        content: ""
+        z-index: 0
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        background: #172433;
+        border-radius: 3px;
+      &::after
+        content: "";
+        z-index: -1;
+        position: absolute;
+        display: block;
+        background: transparent;
+        border-color: #fd4000;
+        border-style: dotted solid solid none;
+        border-radius: 3px;
+
+      span.ark-tags-name-box
+        overflow hidden
+        z-index: 1
+        margin: 0 3px 0 0   
+        span.ark-tags-name
+          float left
+          white-space nowrap
+          animation text-roll 4s cubic-bezier(.6, 0, .5, 1) alternate infinite
+          min-width 100%
+      span.ark-tags-length
+        z-index: 1
+        position: relative;
+        &::after
+          content: "";
+          position: absolute;
+          box-shadow: 0px 0px 0px 0.5px inset #232323;
+          background: linear-gradient(to right,#fd4000 var(--percentage),#fd4000,white var(--percentage),white) 
+          
+//针对侧栏比例进行调整。整体偏小
+#aside-content .card-tags
+  .card-tag-cloud
+    a.ark-tags-box
+      width: 80px;
+      height: 60px;
+      margin: 0 4px 4px 0;
+      padding: 0 10px 0 5px;
+      font-size: 12px;
+      &::before
+        width: 80px;
+        height: 60px;
+        clip-path: polygon(0px 6px,40px 6px,45px 0,100% 0,100% calc(50% - 12px),calc(100% - 5px) calc(50% - 10px),calc(100% - 5px) calc(50% + 10px),100% calc(50% + 12px),100% 100%,10px 100%,0 calc(100% - 10px))
+        box-shadow: 0px 0px 0px 3px inset #4a4f56;
+      &::after
+        top: 4px;
+        left: 2px;
+        width: 72px;
+        height: 41px;
+        border-width: 3px 5px 10px 0px;
+
+      span.ark-tags-name-box
+        width 4em
+        height 12px
+        
+        span.ark-tags-name
+          line-height: 12px;
+      span.ark-tags-length
+        line-height: 12px;
+        &::after
+          width: 60px;
+          height: 3px;
+          right: 0px;
+          bottom: -10px;
+                  
+    a.ark-tags-button
+      background: black;
+      width: 200px;
+      height: 30px;
+      display: flex;
+      font-size: 12px;
+      font-family: 'UnidreamLED','TaikoMagic';
+      text-align: center;
+      box-shadow: 0px 0px 0px 3px inset #4a4f56;
+      border-radius: 3px;
+      justify-content: center;
+      align-items: center;
+//针对分类页面进行调整
+#page .tag-cloud-list
+  .card-tag-cloud
+    a.ark-tags-box
+      width: 100px;
+      height: 70px;
+      margin: 0 4px 4px 4px
+      padding: 0 10px 0 5px;
+      font-size: 12px;
+      &::before
+        width: 100px;
+        height: 70px;
+        clip-path: polygon(0px 6px,40px 6px,45px 0,100% 0,100% calc(50% - 12px),calc(100% - 5px) calc(50% - 10px),calc(100% - 5px) calc(50% + 10px),100% calc(50% + 12px),100% 100%,10px 100%,0 calc(100% - 10px))
+        box-shadow: 0px 0px 0px 3px inset #4a4f56;
+      &::after
+        top: 4px;
+        left: 2px;
+        width: 92px;
+        height: 50px;
+        border-width: 3px 5px 10px 0px;
+
+      span.ark-tags-name-box
+        width 6em
+        height 14px       
+        span.ark-tags-name
+          line-height: 12px;
+      span.ark-tags-length
+        line-height: 12px;
+        &::after
+          width: 80px;
+          height: 3px;
+          right: 0px;
+          bottom: -12px;
+      
+
+//感谢空梦提供的过长文本轮回滚动方案
+//https://kmar.top/posts/9db1c87c/
+@keyframes text-roll
+  from
+    margin-left 0
+  to
+    margin-left 100%
+    transform translateX(-100%)

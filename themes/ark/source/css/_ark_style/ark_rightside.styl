@@ -1,0 +1,227 @@
+:root
+  --rightside-background: rgba(14,14,14,0.95) //电脑端按钮背景底色
+  --rightside-background-hover: rgba(180, 50, 35, 0.95) //电脑端按钮悬停背景色
+  --rightside-font-color: #ffffff //电脑端按钮字体默认色
+  --rightside-box-shadow: #888888 //电脑端按钮内侧光晕效果
+  --rightside-icon-background: rgba(101, 103, 107,0.6) //电脑端按钮图标背景色
+  --rightside-icon-color: #ffffff //电脑端按钮图标颜色
+  --rightside-icon-shadow: #262728//电脑端按钮内侧光晕颜色
+  --rightside-corner-background: #c27314 //电脑端按钮角标背景颜色
+  --rightside-corner-color: #cdcdcd //电脑端按钮角标字体颜色
+  --rightside-corner-shadow: #222222 //电脑端按钮角标内侧光晕颜色
+  --rightside-m-background-color: #2e302f//手机端按钮背景底色
+  --rightside-m-border-color: #be7321 //手机端按钮外嵌边框
+  --rightside-m-icon-color: #ffffff//手机端按钮图标颜色
+  --rightside-m-icon-background: #707472//手机端图标背景颜色
+  --rightside-m-icon-border-color: #464a58//手机端图标边框颜色
+  --rightside-m-hover-color: #8c2c20//手机端悬停配色
+  --rightside-transition:  all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17) //按钮动态变化动画效果
+[data-theme="dark"]
+  --rightside-background: rgba(35, 50, 68,0.75)
+  --rightside-background-hover: rgba(54, 124, 197, 0.9)
+  --rightside-font-color: #ffffff
+  --rightside-box-shadow: #2983be
+  --rightside-icon-background: rgba(45, 45, 60,0.6)
+  --rightside-icon-color: #2983be
+  --rightside-icon-shadow: #191a19
+  --rightside-corner-background: #2983be
+  --rightside-corner-color: #ffffff
+  --rightside-corner-shadow: #222222
+  --rightside-m-background-color: #2e302f//手机端按钮背景底色
+  --rightside-m-border-color: #2556ab //手机端按钮外嵌边框
+  --rightside-m-icon-color: #ffffff//手机端按钮图标颜色
+  --rightside-m-icon-background: #707472//手机端图标背景颜色
+  --rightside-m-icon-border-color: #141e29//手机端图标边框颜色
+  --rightside-m-hover-color: rgba(40, 42, 45, 0.9)//手机端悬停配色
+//默认侧栏样式
+#rightside
+  font-family: 'SAOUI','TaikoMagic','ZhuZiAYuanJWD' //字体样式，可以自行替换
+  position: fixed
+  z-index: 100
+  opacity: 0
+  transition: all .5s
+
+  #rightside-config-hide
+    height: 0
+    opacity: 0
+    transition: transform .4s
+    transform: translate(100%, 0)
+
+    &.show
+      height: auto
+      opacity: 1
+      transform: translate(0, 0)
+
+    &.status
+      height: auto
+      opacity: 1
+
+  & > div
+    & > button,
+    & > label,
+    & > a
+      text-align: center
+      font-size: 16px
+      
+
+  #mobile-toc-button
+    display: none
+
+    +maxWidth900()
+      display: block
+
+  +maxWidth900()
+    #hide-aside-btn
+      display: none
+//电脑端样式，斜面异形
+@media screen and (min-width: 900px)
+  #rightside
+    bottom: 60px
+    right: -48px
+    &:hover
+      &> div > button,
+      &> div > label,
+      &> div > a    
+        transform: rotateZ(0deg)
+        transform-origin: right
+        transition: transform .4s
+        i,
+        svg
+          transform: rotateZ(0deg)
+          transition: transform .4s
+        span
+          opacity: 1
+          clip-path: inset(0)
+          transition: all .3s .2s
+    &> div > button,
+    &> div > label,
+    &> div > a
+      display: flex
+      margin-bottom: 5px
+      position: relative
+      padding: 6px 15px 0px 0px
+      width: 135px
+      height: 50px
+      transform: rotateZ(-90deg)
+      transform-origin: right
+      transition: transform .4s
+      border-radius: 0px
+      background-color: var(--rightside-background)
+      color: var(--rightside-font-color)
+      clip-path: polygon(100% 0, 60px 0, 50px 10px, 30px 10px, 0 40px, 0 100%, 50px 100%, 60px 40px, calc(100% - 10px) 40px, 100% 30px)
+      box-shadow: 1px 0px 5px var(--rightside-box-shadow) inset
+      border-radius: 35px 0px 30px 0px
+      align-items: flex-start
+      flex-direction: row-reverse
+      justify-content: flex-start
+      i,
+      svg
+        transform: rotateZ(90deg)
+        transition: transform .4s
+        background: var(--rightside-icon-shadow)
+        border: 1px solid var(--rightside-icon-color)
+        box-shadow: 0px 0px 10px var(--rightside-icon-shadow) inset
+        color: var(--rightside-icon-color)
+        border-radius: 50%
+        width: 27px
+        height: 27px
+        display: flex
+        align-items: center
+        justify-content: center
+        text-align: center
+        padding: 5px
+      span
+        margin: 10px 3px 0px 0px
+        text-shadow: 1px 2px 3px var(--rightside-box-shadow)
+        line-height: 1em
+        opacity: 0
+        clip-path: inset(50%)
+        transition: all .4s
+      &::before
+        content: "akilar"
+        font-size: 12px
+        display: flex
+        box-shadow: 0px 0px 2px var(--rightside-corner-shadow) inset
+        width: 35px
+        padding: 0px 0px 0px 7px
+        height: 12px
+        line-height: 12px
+        position: absolute
+        background: var(--rightside-corner-background)
+        color: var(--rightside-corner-color)
+        bottom: -1px
+        left: -1px
+        align-items: flex-end
+        clip-path: polygon(0 0,calc(100% - 10px) 0,100% 100%,0 100%)
+      &::after
+        content: ""
+        display: block
+        width: 16px
+        height: 16px
+        position: absolute
+        background: var(--rightside-icon-color)
+        top: -1px
+        right: -1px
+        clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 85% 50%, 85% 15%, 50% 15%, 55% 0%, 27% 0%, 27% 30%, 27% 57%, 0% 57%, 0% 70%, 27% 70%, 27% 100%, 40% 100%, 40% 70%, 70% 70%, 70% 57%, 40% 57%, 40% 30%, 27% 30%, 27% 0%)
+      &:hover
+        background: var(--rightside-background-hover)
+        i
+          color: var(--rightside-background-hover)
+//手机端样式，嵌入圆形
+@media screen and (max-width: 900px)
+  #rightside
+    bottom: 150px
+    right: -48px
+    &> div > button,
+    &> div > label,
+    &> div > a
+      display: block
+      background: var(--rightside-m-background-color)
+      position: relative
+      margin-bottom: 10px
+      border-radius: 3px
+      width: w = 35px
+      height: w
+      line-height: w
+      i,
+      svg
+        background: var(--rightside-m-icon-background)
+        color: var(--rightside-m-icon-color)
+        width: 25px
+        height: 25px
+        padding: 3px 3px
+        border: 2px solid var(--rightside-m-icon-border-color)
+        border-radius: 50%
+      span
+        display: none
+      &::before
+        content: ""
+        z-index: 2
+        background: var(--rightside-m-border-color)
+        width: 35px
+        height: 35px
+        position: absolute
+        left: 0px
+        top: 0px
+        clip-path: polygon(50% 50%,50% 10px,calc(50% - 3px) 10px,calc(50% - 5px) 0,calc(50% + 5px) 0,calc(50% + 3px) 10px,50% 10px,50% 50%,50% calc(100% - 10px),calc(50% - 3px) calc(100% - 10px),calc(50% - 5px) 100%,calc(50% + 5px) 100%,calc(50% + 3px) calc(100% - 10px),50% calc(100% - 10px),50% 50%,10px 50%,10px calc(50% - 3px),0 calc(50% - 5px),0 calc(50% + 5px),10px calc(50% + 3px),10px 50%,50% 50%,calc(100% - 10px) 50%,calc(100% - 10px) calc(50% - 3px),100% calc(50% - 5px),100% calc(50% + 5px),calc(100% - 10px) calc(50% + 3px),calc(100% - 10px) 50%,50% 50%)
+        transition: var(--rightside-transition)
+      &::after
+        content: ""
+        z-index: 1
+        background: var(--rightside-m-icon-background)
+        width: 35px
+        height: 35px
+        position: absolute
+        border-radius: 3px
+        left: 0px
+        top: 0px
+        clip-path: polygon(10% 100%, 10% 0%, 0% 0%, 0% 100%, 10% 100%, 35% 100%, 40% 94%, 60% 94%, 65% 100%, 35% 100%, 35% 0%, 40% 6%, 60% 6%, 60% 0%, 35% 0%, 35% 100%,90% 100%,90% 0,100% 0,100% 100%,35% 100%)
+      &:hover
+        background: var(--rightside-m-hover-color)
+        &::before
+          left: -8px
+          top: -8px
+          width: 49px
+          height: 49px
+          transform: rotateZ(45deg)
+          transition: var(--rightside-transition)

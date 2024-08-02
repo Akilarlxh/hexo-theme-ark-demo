@@ -1,0 +1,13 @@
+extends includes/layout.pug
+
+block content
+  include ./includes/mixins/article-sort.pug
+  #archive
+    - const archiveLength = findArchiveLength(fragment_cache)
+    .article-sort-title
+      .article-sort-title-text= _p('page.articles') + ' - ' + archiveLength
+    .ark-article-sort-container
+      .swiper-wrapper.ark-article-sort-wrapper
+        +articleSort(page.posts)
+        .swiper-slide.ark-article-sort-pagination
+          include includes/pagination.pug

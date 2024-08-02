@@ -1,0 +1,40 @@
+mixin articleSort(posts)
+  - var year
+  - posts.each(function (article) {
+    - let tempYear = date(article.date, 'YYYY')
+    - let no_cover = article.cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
+    - let title = article.title || _p('no_title')
+    - let subtitle = article.subtitle ? article.subtitle : article.title || _p('no_title')
+    - let descr = article.description ? article.description : subtitle
+    - let iconAnimal = '#'+ getAnimalIcon(tempYear)
+    //- 年份版块
+    if tempYear !== year
+      - year = tempYear
+      .ark-article-sort-year.swiper-slide
+        span= year
+        svg.icon(aria-hidden='true')
+          use(xlink:href=iconAnimal)
+    //- 编年版块
+    .ark-article-sort-item.swiper-slide
+      .ark-article-sort-item-date
+        //- 发表时间
+        time.post-meta-date-created(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date))= date(article.date, config.date_format)
+        //- 更新时间
+        if article.updated
+          span.post-meta-date-split="-"
+          time.post-meta-date-updated(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated))=date(article.updated, config.date_format)
+      //- 文章信息版块
+      label.ark-article-sort-item-info(for=title) 
+        input(type="checkbox" name=title id=title)
+        //- 文章标题
+        .ark-article-sort-item-title!= title
+        //- 详情版块
+        a.ark-article-sort-item-detail(href=url_for(article.path) title=subtitle class=no_cover)
+          if article.cover && theme.cover.archives_enable
+          //- 文章封面
+          .ark-article-sort-item-img
+            img(src=url_for(article.cover) alt=subtitle onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`)
+          //- 文章描述
+          .ark-article-sort-item-descr     
+            .ark-article-sort-item-descr!= descr
+  - })

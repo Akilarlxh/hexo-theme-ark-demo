@@ -1,0 +1,90 @@
+#loading-box
+  position fixed
+  z-index 1000
+  width 100vw
+  height 100vh
+  overflow hidden
+  text-align center
+  background rgba(236,236,236,0.95)
+  text-align center
+  &:before
+    content ''
+    display inline-block
+    height 100%
+    vertical-align middle
+  &.loaded
+    z-index -1000
+    .SAO-scene
+      display none
+  .SAO-wall
+    background url(https://npm.elemecdn.com/akilar-candyassets/image/72c0a2ea.png)
+    background-size cover
+    width 100%
+    height 100%
+    position absolute
+    opacity 0
+    animation SAO-LKS-fade 12s infinite linear
+    animation-delay 0
+
+  .SAO-scene
+    display inline-block
+    vertical-align middle
+    perspective 5px
+    perspective-origin 50% 50%
+    position relative
+
+  .SAO-wrap
+    position absolute
+    width 1000px
+    height 1000px
+    left -500px
+    top -500px
+    transform-style preserve-3d
+    animation SAO-LKS-move 12s infinite linear
+    animation-fill-mode forwards
+    &:nth-child(2)
+      animation SAO-LKS-move 12s infinite linear
+      animation-delay 6s
+      .SAO-wall
+        animation-delay 6s
+
+  .SAO-wall-right
+    transform rotateY(90deg) translateZ(500px)
+
+  .SAO-wall-left
+    transform rotateY(-90deg) translateZ(500px)
+
+  .SAO-wall-top
+    transform rotateX(90deg) translateZ(500px)
+
+  .SAO-wall-bottom
+    transform rotateX(-90deg) translateZ(500px)
+
+  .SAO-wall-back
+    transform rotateX(180deg) translateZ(500px)
+
+
+
+@keyframes SAO-LKS-move {
+  0%{
+    transform: translateZ(-500px) rotate(0deg);
+  }
+  100%{
+    transform: translateZ(500px) rotate(0deg);
+  }
+}
+
+@keyframes SAO-LKS-fade {
+  0%{
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}

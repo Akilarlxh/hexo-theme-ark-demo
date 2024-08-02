@@ -1,0 +1,30 @@
+if theme.aside.card_friend_link.enable
+  input#card-friend-link-anchor.card-widget-visible(type="radio" name="card-widget-visible" value="card-friend-link")
+  .card-widget.card-friend-link
+    .item-headline
+      i.far.fa-address-book
+      span= _p('aside.card_friend_link')
+    .card-friend-link-container
+      if site.data.link
+        each i in site.data.link
+          if i.showonside
+            details.card-friend-class-name
+              summary.card-friend-class-desc(title=i.class_desc)
+                sapn!=i.class_name
+                span.online-friend-number
+                sapn!=i.link_list.length
+              each item in i.link_list
+                if !(item.offline)
+                  a.card-friend-item.online-friend-link(href=url_for(item.link)  title=item.name target="_blank")
+                    img.no-lightbox.card-friend-avatar(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                    .card-friend-details
+                      .card-friend-name= item.name
+                      .card-friend-descr(title=item.descr)= item.descr
+              each item in i.link_list
+                if item.offline
+                  a.card-friend-item.offline-friend-link(href=url_for(item.link)  title=item.name target="_blank")
+                    img.no-lightbox.card-friend-avatar(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                    .card-friend-details
+                      .card-friend-name= item.name
+                      .card-friend-descr(title=item.descr)= item.descr
+      

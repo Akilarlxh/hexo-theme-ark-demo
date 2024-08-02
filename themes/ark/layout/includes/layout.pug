@@ -1,0 +1,49 @@
+- var htmlClassHideAside = theme.aside.enable && theme.aside.hide ? 'hide-aside' : ''
+- page.aside = is_archive() ? theme.aside.display.archive: is_category() ? theme.aside.display.category : is_tag() ? theme.aside.display.tag : page.aside
+- var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
+- var pageType = is_post() ? 'post' : 'page'
+
+doctype html
+html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside)
+  head
+    include ./head.pug
+  body
+    !=partial('includes/custom/ark_cab', {}, {cache:theme.fragment_cache})
+    if theme.preloader.enable
+      !=partial('includes/loading/loading', {}, {cache:theme.fragment_cache})
+    //- 首先取到所有的背景数值。如果没有就先按照默认的背景逐一赋值
+    - $default_bg = page.default_bg || theme.background.default_bg
+    - $dark_bg = page.dark_bg || theme.background.dark_bg || $default_bg
+    - $mobile_bg = page.mobile_bg || theme.background.mobile_bg || $default_bg
+    - $mobile_dark_bg = page.mobile_dark_bg || theme.background.mobile_dark_bg || $dark_bg
+    if theme.background
+      #web-bg
+        #default-bg(style=`background:`+ $default_bg+`;`)
+        #dark-bg(style=`background:`+ $dark_bg+`;`)
+        #mobile-bg(style=`background:`+ $mobile_bg+`;`)
+        #mobile-dark-bg(style=`background:`+ $mobile_dark_bg+`;`)
+
+    if page.type !== '404'
+      #body-wrap(class=pageType)
+        include ./header/index.pug
+
+        main#content-inner.layout(class=hideAside)
+          if body
+            div!= body
+          else
+            block content
+            if theme.aside.enable && page.aside !== false
+              include widget/index.pug
+            //- 当侧栏开启但是手机端关闭时，引入手机端伸缩侧栏
+            if theme.aside.enable && page.aside !== false && !theme.aside.mobile
+              include widget/mobile_index.pug
+        footer#footer
+          !=partial('includes/custom/ark_footer', {}, {cache: true})
+
+    else
+      include ./404.pug
+
+    include ./rightside.pug
+    include ./reward.pug
+    !=partial('includes/third-party/search/index', {}, {cache: true})
+    include ./additional-js.pug

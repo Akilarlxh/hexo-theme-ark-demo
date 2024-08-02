@@ -1,0 +1,22 @@
+#article-container
+  != page.content
+  .reward-content
+    table.reward-table
+      caption.reward-caption=_p("reward.title")
+      thead.reward-thead
+        tr.reward-tr
+          th.reward-th=_p("reward.name")
+          th.reward-th=_p("reward.amount")
+          th.reward-th=_p("reward.method")
+          th.reward-th=_p("reward.date")
+      tbody.reward-tbody
+        if site.data.reward
+          each item, index in site.data.reward
+            tr.reward-tr
+              if index < 1
+                td.reward-td(data-label=_p("reward.name"))!= item.name
+              else
+                td.reward-td(scope="row" data-label=_p("reward.name"))!= item.name
+              td.reward-td(data-label=_p("reward.amount"))!= item.amount
+              td.reward-td(data-label=_p("reward.method"))!= item.method
+              td.reward-td(data-label=_p("reward.date"))!= date(item.date, config.date_format)

@@ -1,0 +1,173 @@
+:root
+  --title-prefix-color: #fff
+  --title-prefix-background: rgba(25,25,25,0.5)
+  --title-prefix-shadow: #555555
+  --title-prefix-border: rgba(180, 181, 182,0.6)
+  --title-prefix-icon-color: #f58b49
+  --title-prefix-corner-mark-color: #555759
+  --title-prefix-corner-mark-background: #dd9f58
+[data-theme="dark"]
+  --title-prefix-color: #8dc9ef
+  --title-prefix-background: rgba(36, 56, 65,0.5)
+  --title-prefix-shadow: #182238
+  --title-prefix-border: rgba(39, 66, 69,0.6)
+  --title-prefix-icon-color: #004e77
+  --title-prefix-corner-mark-color: #92cef1
+  --title-prefix-corner-mark-background: #37708f
+
+beautify()
+  headStyle(icon,level)
+    &:before
+      content: icon
+    &:after
+      content: 'level'+ level
+      height: unit((1.6 - level/10),'em')
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    transition: all .2s ease-out
+    width: fit-content
+    width: -moz-fit-content
+    height: fit-content
+    height: -moz-fit-content
+    min-width: 8em
+    min-height: 2em
+    clip-path: polygon(0 0,calc(100% - 1em) 0,100% 1em,100% 100%,1em 100%,0 calc(100% - 1em))
+    padding: 0px 1.5em  
+    color: var(--title-prefix-color)
+    background: var(--title-prefix-background)
+    text-shadow: 3px 4px var(--title-prefix-shadow)
+    border: 3px solid var(--title-prefix-border)
+    &:before
+      position: absolute
+      bottom: 0.6em
+      left: 0.2em
+      color: var(--title-prefix-icon-color)
+      line-height: 1
+      transition: all .2s ease-out
+      @extend .fontawesomeIcon
+    &:after
+      position: absolute
+      font-size: 12px
+      padding: 0px 0px 0px 20px
+      background: var(--title-prefix-corner-mark-background)
+      font-family: "SAOUI"
+      text-shadow: none
+      line-height: 1em
+      color: var(--title-prefix-corner-mark-color)
+      width: 40px
+      display: flex
+      align-items: center
+      bottom: -3px
+      right: -3px
+      clip-path: polygon(15px 0,100% 0,100% 100%,0 100%)
+
+
+    &:hover
+      &:after
+        transition: all .2s ease-out
+        text-shadow: 1px 1px #efefef
+
+  h1
+    headStyle("\f2db",1)
+  h2
+    headStyle("\f085",2)  
+  h3
+    headStyle("\f5d2",3)
+  h4
+    headStyle("\f233",4)
+  h5
+    headStyle("\f135",5)
+  h6
+    headStyle("\f1de",6)
+  ol,
+  ul
+    p
+      margin: 0 0 8px
+
+  li
+    &::marker
+      color: $light-blue
+      font-weight: 600
+      font-size: 1.05em
+
+    &:hover
+      &::marker
+        color: var(--pseudo-hover)
+
+  ul > li
+    list-style-type: circle
+
+#article-container
+  word-wrap: break-word
+  overflow-wrap: break-word
+
+  a
+    color: $theme-link-color
+
+    &:hover
+      text-decoration: underline
+
+  img
+    display: block
+    margin: 0 auto 20px
+    max-width: 100%
+    transition: filter 375ms ease-in .2s
+
+  p
+    margin: 0 0 16px
+
+  iframe
+    margin: 0 0 20px
+
+  if hexo-config('anchor')
+    a.headerlink
+      &:after
+        @extend .fontawesomeIcon
+        float: right
+        color: var(--headline-presudo)
+        content: '\f0c1'
+        font-size: .95em
+        opacity: 0
+        transition: all .3s
+
+      &:hover
+        &:after
+          color: var(--pseudo-hover)
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+      &:hover
+        a.headerlink
+          &:after
+            opacity: 1
+
+  ol,
+  ul
+    ol,
+    ul
+      padding-left: 20px
+
+    li
+      margin: 4px 0
+
+    p
+      margin: 0 0 8px
+
+  if hexo-config('beautify.enable')
+    if hexo-config('beautify.field') == 'site'
+      beautify()
+    else if hexo-config('beautify.field') == 'post'
+      &.post-content
+        beautify()
+
+  > :last-child
+    margin-bottom: 0 !important

@@ -1,0 +1,315 @@
+:root
+  --ark-cab-border-color: rgba(255,255,255,0.7)
+  --ark-cab-shadow-color: rgba(226, 248, 24, 0.8)
+[data-theme="dark"]
+  --ark-cab-border-color: rgba(255,255,255,0.7)
+  --ark-cab-shadow-color: rgba(24, 248, 229, 0.8)
+// flex的居中属性，太多地方用到了，直接简化一下
+ark-cab-flexcenter()
+  display flex
+  align-items center
+  justify-content center
+// 三个异形三角边框的基本样式
+ark-cab-triangle(ArkTwidth,ArkTheight)
+  position: absolute;
+  display: block;
+  width: ArkTwidth;
+  height: ArkTheight;
+  border-radius: 15px;
+  background: var(--ark-cab-border-color);
+  clip-path: polygon(50% 0, calc(50% - 75px) 0, calc(50% - 100px) 40px, calc(50% - 100px) 60px, 0% calc(100% - 17px), 0 100%, calc(50% - 72px) 30px, calc(50% + 72px) 30px, 100% 100%, 100% calc(100% - 17px),calc(50% + 100px) 60px, calc(50% + 100px) 40px, calc(50% + 75px) 0);
+#ark-cab-box
+  position fixed
+  z-index 1000
+  width 100vw
+  height 100vh
+  margin 0
+  overflow hidden
+  ark-cab-flexcenter()
+  &.arksink
+    z-index -1000
+  *
+    transition: all .5s ease-in
+  #ark-cab
+    position relative
+    ark-cab-flexcenter()
+    width 100%
+    height 100%
+    background: rgba(20,20,20,0.5)
+    backdrop-filter: blur(8px);
+    transform: translateZ(0)
+    // 中间的带刻度圆形
+    .ark-cab-main-container 
+      ark-cab-flexcenter()
+      order: 2
+      width: 500px
+      height: 500px
+      clip-path: circle(100%)
+      // 上半刻度环
+      .ark-cab-outside-border
+        height: 360px;
+        width: 360px;
+        position: relative;
+        ark-cab-flexcenter()
+        border: 2px dotted;
+        border-color: var(--ark-cab-border-color) transparent transparent transparent;
+        border-radius: 50%;
+        // 八分刻度环
+        &::before
+          content: ""
+          position: absolute;
+          height: 370px;
+          width: 370px;
+          top: -5px
+          left: -5px
+          border-radius: 50%
+          box-shadow: 0 0 0 30px inset var(--ark-cab-border-color);
+          clip-path: polygon(50% 50%,51% 0,49% 0,50% 50%,2% 0,0 2%,50% 50%,0 49%,0 51%,50% 50%,0 98%,2% 100%,50% 50%,49% 100%,51% 100%,50% 50%,98% 100%,100% 98%,50% 50%,100% 51%,100% 49%,50% 50%,100% 2%,98% 0);
+        // 下半刻度环
+        &::after
+          content: "";
+          position: absolute;
+          height: 344px;
+          width: 344px;
+          top: 3px
+          left: 0px
+          border-radius: 50%;
+          border: 3px dashed var(--ark-cab-border-color);
+          clip-path: inset(50% 0 0 0)
+              
+    //- 顶部三角
+    .ark-cab-top-triangle
+      ark-cab-triangle(280px,140px)
+      left: calc(50% - 140px);
+      bottom: calc(50% + 220px);
+
+    //- 左下角三角
+    .ark-cab-bottom-left-triangle
+      ark-cab-triangle(260px,130px)
+      left: calc(50% - 460px);
+      top: calc(50% + 160px);
+      transform: rotateZ(-120deg);
+    //- 右上角三角
+    .ark-cab-bottom-right-triangle
+      ark-cab-triangle(260px,130px)
+      right: calc(50% - 460px);
+      top: calc(50% + 160px);
+      transform: rotateZ(120deg);
+
+    //- 中部左侧异形边框
+    .ark-cab-center-left-border
+      order: 1
+      position: relative;
+      width: 200px;
+      height: 60px;
+      &::before
+        content: "";
+        position: absolute;
+        display: block;
+        width: 200px;
+        height: 60px;
+        right: 0
+        top: 0
+        background: var(--ark-cab-border-color);
+        margin: 0 40px;
+        clip-path: polygon(0 calc(100% - 20px),0 calc(100% - 23px) ,calc(100% - 80px) calc(100% - 23px),calc(100% - 50px) 30px,calc(100% - 20px) 30px,calc(100% - 20px) calc(100% - 20px),calc(100% - 10px) calc(100% - 20px),calc(100% - 10px) 0,100% 0,100% 100%,calc(100% - 10px) 100%,calc(100% - 10px) calc(100% - 20px));
+        transform: skewX(-40deg);
+      &::after
+        content: "";
+        position: absolute;
+        display: block;
+        height: 12px;
+        width: 30px;
+        top: 15px;
+        right: 55px;
+        clip-path: polygon(0% 100%, 0% 0%, 17% 0%, 17% 80%, 12% 100%, 20% 100%, 20% 0%, 37% 0%, 37% 80%, 32% 100%, 40% 100%, 40% 0%, 57% 0%, 57% 80%, 52% 100%, 60% 100%, 60% 0%, 77% 0%, 77% 80%, 72% 100%, 80% 100%, 80% 0, 97% 0, 97% 80%, 92% 100%);
+        transform: skew(-40deg, 0deg);
+        animation: ark-cab-power-flash-left 3s ease infinite
+    // //- 中部右侧异形边框
+    .ark-cab-center-right-border
+      order: 3
+      position: relative;
+      width: 200px;
+      height: 60px;
+      &::before
+        content: "";
+        position: absolute;
+        display: block;
+        width: 200px;
+        height: 60px;
+        left: 0
+        top: 0
+        background: var(--ark-cab-border-color);
+        margin: 0 40px;
+        clip-path: polygon(100% calc(100% - 20px), 100% calc(100% - 23px), 80px calc(100% - 23px), 50px 30px, 20px 30px, 20px calc(100% - 20px), 10px calc(100% - 20px), 10px 0, 0 0, 0 100%, 10px 100%, 10px calc(100% - 20px))
+        transform: skewX(40deg);
+      &::after
+        content: "";
+        position: absolute;
+        display: block;
+        height: 12px;
+        width: 30px;
+        top: 15px;
+        left: 55px;
+        clip-path: polygon(100% 100%, 100% 0%, 83% 0%, 83% 80%, 88% 100%, 80% 100%, 80% 0%, 63% 0%, 63% 80%, 68% 100%, 60% 100%, 60% 0%, 43% 0%, 43% 80%, 48% 100%, 40% 100%, 40% 0%, 23% 0%, 23% 80%, 28% 100%, 20% 100%, 20% 0, 3% 0, 3% 80%, 8% 100%);
+        transform: skew(40deg, 0deg);
+        animation: ark-cab-power-flash-right 3s ease infinite
+    //- 顶部左侧异形边框
+    .ark-cab-top-left-border
+      position: absolute;
+      display: block;
+      height: 70px;
+      width: calc(50% - 160px);
+      background: var(--ark-cab-border-color);
+      left: 0;
+      bottom: calc(50% + 290px);
+      clip-path: polygon(100% 100%,0 100%,0 calc(100% - 3px),calc(100% - 160px) calc(100% - 5px),calc(100% - 150px) calc(100% - 10px),calc(100% - 15px) calc(100% - 10px),calc(100% - 15px) calc(100% - 30px),calc(100% - 1px) calc(100% - 40px),calc(100% - 1px) 0,100% 0);
+      transform: skew(-35deg,10deg);
+    //- 顶部右侧侧异形边框
+    .ark-cab-top-right-border
+      position: absolute;
+      display: block;
+      height: 70px;
+      width: calc(50% - 160px);
+      background: var(--ark-cab-border-color);
+      right: 0;
+      bottom: calc(50% + 290px);
+      clip-path: polygon(0 100%,100% 100%,100% calc(100% - 3px),160px calc(100% - 5px),150px calc(100% - 10px),15px calc(100% - 10px),15px calc(100% - 30px),1px calc(100% - 40px),1px 0,0 0);
+      transform: skew(35deg,-10deg);
+    //- 顶部左侧能量条
+    .ark-cab-top-left-flash
+      position: absolute;
+      display: block;
+      height: 12px;
+      width: 80px;
+      bottom: calc(50% + 320px);
+      left: calc(50% - 350px);;
+      clip-path: polygon(0% 100%, 0% 0%, 17% 0%, 17% 80%, 12% 100%, 20% 100%, 20% 0%, 37% 0%, 37% 80%, 32% 100%, 40% 100%, 40% 0%, 57% 0%, 57% 80%, 52% 100%, 60% 100%, 60% 0%, 77% 0%, 77% 80%, 72% 100%, 80% 100%, 80% 0, 97% 0, 97% 80%, 92% 100%);
+      transform: skew(-30deg,10deg);
+      animation: ark-cab-power-flash-left 3s ease infinite
+    //- 顶部右侧能量条
+    .ark-cab-top-right-flash
+      position: absolute;
+      display: block;
+      height: 12px;
+      width: 80px;
+      bottom: calc(50% + 320px);
+      right: calc(50% - 350px);;
+      clip-path: polygon(100% 100%, 100% 0%, 83% 0%, 83% 80%, 88% 100%, 80% 100%, 80% 0%, 63% 0%, 63% 80%, 68% 100%, 60% 100%, 60% 0%, 43% 0%, 43% 80%, 48% 100%, 40% 100%, 40% 0%, 23% 0%, 23% 80%, 28% 100%, 20% 100%, 20% 0, 3% 0, 3% 80%, 8% 100%);
+      transform: skew(30deg, -10deg);
+      animation: ark-cab-power-flash-right 3s ease infinite
+    //- 底部中间边框
+    .ark-cab-bottom-center-border
+      position: absolute
+      top: calc(50% + 160px)
+      left: calc(50% - 250px)
+      display: block;
+      height: 50px;
+      width: 500px;
+      background: var(--ark-cab-border-color);
+      clip-path: polygon(0% 15px, calc(50% - 100px) 0, calc(50% - 70px) calc(100% - 20px), calc(50% + 70px) calc(100% - 20px), calc(50% + 100px) 0, 100% 15px, calc(100% - 3px) 20px, calc(50% + 105px) 7px, calc(50% + 89px) calc(100% - 30px), calc(50% + 90px) calc(100% - 23px), calc(50% + 70px) 100%, calc(50% - 70px) 100%, calc(50% - 90px) calc(100% - 23px), calc(50% - 89px) calc(100% - 30px), calc(50% - 105px) 7px, 3px 20px, 0 15px);
+    //- 底部左侧边框
+    .ark-cab-bottom-left-border
+      position: absolute;
+      display: block;
+      height: 90px;
+      width: calc(50% - 430px);
+      background: var(--ark-cab-border-color);
+      left: 30px;
+      top: calc(50% + 260px)
+      clip-path: polygon(0 0,100% 0,100% calc(100% - 15px),calc(100% - 8px) 100%,calc(100% - 6px) 30px,calc(100% - 12px) 32px,calc(100% - 11px) 10px,10px 12px);
+      transform: skew(30deg, -10deg);
+    //- 底部右侧边框
+    .ark-cab-bottom-right-border
+      position: absolute;
+      display: block;
+      height: 90px;
+      width: calc(50% - 430px);
+      background: var(--ark-cab-border-color);
+      right: 30px;
+      top: calc(50% + 260px)
+      clip-path: polygon(100% 0,0 0,0 calc(100% - 15px),8px 100%,6px 30px,12px 32px,11px 10px,calc(100% - 10px) 12px);
+      transform: skew(-30deg, 10deg);
+  //结束效果
+  &.arkend
+    //默认结束动画效果
+    *
+      transition: all 1.0s ease-in 0.3s
+    #ark-cab
+      background: rgba(20,20,20,0.0)
+      backdrop-filter: blur(0px);
+      transition: all 0.3s ease-in 0.7s
+      // 第一段动画四周异形长边框先打开
+      //- 顶部两侧区域向两侧平移打开
+      //- 顶部左侧能量条
+      .ark-cab-top-left-flash
+        transform: skew(-30deg,10deg) translateY(-1000px)
+        transition: transform 0.3s ease-in 0.3s
+      //- 顶部右侧能量条
+      .ark-cab-top-right-flash
+        transform: skew(30deg, -10deg) translateY(-1000px)
+        transition: transform 0.3s ease-in 0.3s
+      //- 顶部左侧异形边框
+      .ark-cab-top-left-border
+        transform: skew(-35deg,10deg) translateX(-1000px)
+        transition: transform 0.3s ease-in 0.3s
+      //- 顶部右侧侧异形边框
+      .ark-cab-top-right-border
+        transform: skew(35deg,-10deg) translateX(1000px)
+        transition: transform 0.3s ease-in 0.3s
+      // 底部区域两侧边框向两侧平移打开
+      //- 底部左侧边框
+      .ark-cab-bottom-left-border
+        transform: skew(30deg, -10deg) translate3d(-3000px, 1000px, 0px)
+        transition: transform 0.3s ease-in 0.3s
+      //- 底部右侧边框
+      .ark-cab-bottom-right-border
+        transform: skew(-30deg, 10deg) translate3d(3000px, 1000px, 0px)
+        transition: transform 0.3s ease-in 0.3s
+      //第二段三角边框打开
+      //- 中间三角框区域分三个角放射性打开
+      //- 顶部三角
+      .ark-cab-top-triangle
+        transform: translateY(-1000px);
+        transition: transform 0.3s ease-in 0.4s
+      //- 左下角三角
+      .ark-cab-bottom-left-triangle
+        transform: rotateZ(-120deg) translate3d(-1000px, -2000px, 0px);
+        transition: transform 0.3s ease-in 0.4s
+      //- 右下角三角
+      .ark-cab-bottom-right-triangle
+        transform: rotateZ(120deg) translate3d(1000px, -2000px, 0px);
+        transition: transform 0.3s ease-in 0.4s
+      // 第三段中间及下方异形边框打开
+      //- 中间边框向下平移打开。
+      //- 底部中间边框
+      .ark-cab-bottom-center-border
+        transform: translateY(1000px);
+        transition: transform 0.4s ease-in 0.5s
+      //- 中部区域向两侧平移打开
+      //- 中部左侧异形边框
+      .ark-cab-center-left-border
+        transform: translateX(-1000px)
+        transition: transform 0.4s ease-in 0.5s
+      //- 中部右侧异形边框
+      .ark-cab-center-right-border
+        transform: translateX(1000px)
+        transition: transform 0.4s ease-in 0.5s
+
+      // 第四段中间主体圆形收束
+      //- 中部主体圆形边框收束消失
+      .ark-cab-main-container
+        clip-path: circle(0%)!important
+        transition: clip-path 0.3s ease-in 0.7s
+// 动画部分
+// 微型能量条闪烁动画
+@keyframes ark-cab-power-flash-left
+  from
+    background: linear-gradient(to left, transparent,transparent 20%,var(--ark-cab-border-color) 21%, transparent);
+  to
+    background: linear-gradient(to left, var(--ark-cab-border-color), transparent);
+@keyframes ark-cab-power-flash-right
+  from
+    background: linear-gradient(to right, transparent,transparent 20%,var(--ark-cab-border-color) 21%, transparent);
+  to
+    background: linear-gradient(to right, var(--ark-cab-border-color), transparent);

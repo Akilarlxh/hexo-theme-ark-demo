@@ -1,0 +1,87 @@
+- const { readmode, translate, darkmode, aside, chat_btn , reward } = theme
+mixin rightsideItem(array)
+  each item in array
+    case item
+      when 'readmode'
+        if is_post() && readmode
+          button#readmode(type="button" title=_p('rightside.readmode_title'))
+            i.fas.fa-book-open.faa-pulse.animated-hover
+            span=_p('rightside.readmode_title')
+      when 'translate'
+        if translate.enable
+          button#translateLink(type="button" title=_p('rightside.translate_title'))
+            i= translate.default
+            span=_p('rightside.translate_title')
+      when 'darkmode'
+        if darkmode.enable && darkmode.button
+          button#darkmode(type="button" title=_p('rightside.night_mode_title'))
+            i.fas.fa-adjust.faa-pulse.animated-hover
+            span=_p('rightside.night_mode_title')
+      when 'hideAside'
+        if aside.enable && aside.button && page.aside !== false
+          button#hide-aside-btn(type="button" title=_p('rightside.aside'))
+            i.fas.fa-arrows-alt-h.faa-pulse.animated-hover
+            span=_p('rightside.aside')
+      when 'sao_utils'
+        if theme.SAO_Utils.enable
+          button#SAO_Utils_Switch(type="button" title=_p("rightside.SAOSwitch") onclick="panelAudio();SAOSwitch()")
+            i.fas.fa-mouse.faa-pulse.animated-hover
+            span=_p("rightside.SAOSwitch") 
+      when 'sao_refresh'
+        if theme.pwa.enable
+          button#SAO_Utils_Refresh(type="button" title=_p("rightside.SAORefresh") onclick="panelAudio();fetchCommits()")
+            i.fa-solid.fa-arrows-rotate.faa-pulse.animated-hover
+            span=_p("rightside.SAORefresh") 
+      when 'toc'
+        if showToc
+          button#mobile-toc-button.close(type="button" title=_p("rightside.toc"))
+            i.fas.fa-list-ul.faa-pulse.animated-hover
+            span=_p("rightside.toc")
+      when 'chat'
+        if chat_btn
+          button#chat_btn(type="button" title=_p("rightside.chat_btn"))
+            i.fas.fa-sms.faa-pulse.animated-hover
+            span=_p("rightside.chat_btn")
+      when 'reward'
+        if theme.reward.enable && theme.reward.QR_code
+          label#reward-button(for="reward-anchor" title=_p("rightside.reward"))
+            i.fa-solid.fa-yen-sign.faa-pulse.animated-hover
+            span=_p("rightside.reward")        
+      when 'comment'
+        if commentsJsLoad
+          button#to_comment(type="button" title=_p("rightside.scroll_to_comment") onclick="FixedCommentBtn();")
+            i.fas.fa-comments.faa-pulse.animated-hover
+            span=_p("rightside.scroll_to_comment")
+
+#rightside
+  - const { enable, hide, show } = theme.rightside_item_order
+  - const hideArray = enable ? hide && hide.split(',') : ['readmode','translate','darkmode','hideAside','sao_utils','sao_refresh']
+  - const showArray = enable ? show && show.split(',') : ['toc','chat','reward','comment']
+
+  
+  #rightside-config-hide
+    if hideArray
+      +rightsideItem(hideArray)
+  #rightside-config-show
+    if enable
+      if hide
+        button#rightside_config(type="button" title=_p("rightside.setting"))
+          i.fas.fa-cog.fa-spin.faa-pulse.animated-hover
+          span=_p("rightside.setting")
+    else
+      if is_post()
+        if (readmode || translate.enable || (darkmode.enable && darkmode.button))
+          button#rightside_config(type="button" title=_p("rightside.setting"))
+            i.fas.fa-cog.fa-spin.faa-pulse.animated-hover
+            span=_p("rightside.setting")
+      else if translate.enable || (darkmode.enable && darkmode.button)
+        button#rightside_config(type="button" title=_p("rightside.setting"))
+          i.fas.fa-cog.fa-spin.faa-pulse.animated-hover
+          span=_p("rightside.setting")
+
+    if showArray
+      +rightsideItem(showArray)
+
+    button#go-up(type="button" title=_p("rightside.back_to_top"))
+      i.fas.fa-arrow-up.faa-pulse.animated-hover
+      span=_p("rightside.back_to_top")

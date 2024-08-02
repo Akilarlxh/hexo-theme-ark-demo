@@ -1,0 +1,133 @@
+:root
+  --ark-reward-title: rgba(226, 248, 24, 0.8)
+  --ark-reward-color: rgba(180, 50, 35, 0.95)
+[data-theme="dark"]
+  --ark-reward-title: rgba(24, 248, 229, 0.8)
+  --ark-reward-color: rgba(0, 108, 190, 0.9)
+reward_border(diameter)
+  position: relative
+  width: diameter
+  height: diameter
+  display: flex;
+  align-items: center;
+  justify-content: center;
+reward_border_before(diameter)
+  position: absolute
+  border-radius: 50%
+  width: diameter
+  height: diameter
+  content: ""
+  top: 0
+  left: 0
+input#reward-anchor[type="checkbox"]
+  display: none
+  &:checked
+    & ~ .reward-box
+      display: flex
+.reward-box
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  transform: translateZ(0px);
+  z-index: 30
+  .reward-border
+    filter: drop-shadow(0 0 5px var(--ark-reward-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .reward-border-first
+      reward_border(430px)
+      &::before
+        reward_border_before(420px)
+        border: 5px solid var(--ark-reward-color);
+        clip-path: polygon(50% 50%, 50% 40%, 90% 0%, 10% 0%, 50% 40%, 50% 50%,50% 60%,90% 100%,10% 100%,50% 60%,50% 50%,40% 50%,0% 90%,0% 10%,40% 50%,50% 50%,60% 50%,100% 90%,100% 10%,60% 50%);
+        animation: reward-border-rotate 30s ease-in-out infinite
+      &::after
+        reward_border_before(420px)
+        top: -15px;
+        left: -15px;
+        animation: reward-border-rotate 30s ease-in-out infinite
+        border: 20px solid var(--ark-reward-color);
+        clip-path: polygon(50% 50%, 50% 10%, 40% 10%, 50% 0%, 60% 10%, 50% 10%,50% 50%,50% 90%,40% 90%,50% 100%,60% 90%,50% 90%,50% 50%,10% 50%,10% 40%,0% 50%,10% 60%,10% 50%,50% 50%,90% 50%,90% 40%,100% 50%,90% 60%,90% 50%);
+      .reward-border-second
+        reward_border(380px)
+        &::before
+          reward_border_before(370px)
+          border: 5px solid;
+          border-color: transparent var(--ark-reward-color);
+          animation: reward-border-rotate-reverse 15s ease-in-out infinite alternate
+        &::after
+          reward_border_before(379px)
+          background: var(--ark-reward-color)
+          clip-path: polygon(0% 45%, 5% 50%, 95% 50%, 100% 45%, 100% 55%, 95% 50%, 5% 50%, 0% 55%);
+          animation: reward-border-rotate-reverse 15s ease-in-out infinite alternate
+        .reward-border-third
+          reward_border(360px)
+          &::before
+            reward_border_before(360px)
+            transform: rotate(45deg);
+            background: var(--ark-reward-color);
+            clip-path: polygon(50% 50%, 50% 15%, 49% 15%, 49% 0%, 51% 0%, 51% 15%, 50% 15%,50% 50%,50% 85%,49% 85%,49% 100%,51% 100%,51% 85%,50% 85%,50% 50%,15% 50%,15% 49%,0% 49%,0% 51%,15% 51%,15% 50%,50% 50%,85% 50%,85% 49%,100% 49%,100% 51%,85% 51%,85% 50%);
+            animation: reward-border-rotate 15s ease-in-out infinite alternate
+          .reward-border-fourth
+            reward_border(270px)
+            &::before
+              reward_border_before(264px)
+              border: 3px dotted var(--ark-reward-color);
+              clip-path: polygon(50% 50%, 50% 40%, 90% 0%, 10% 0%, 50% 40%, 50% 50%,50% 60%,90% 100%,10% 100%,50% 60%,50% 50%,40% 50%,0% 90%,0% 10%,40% 50%,50% 50%,60% 50%,100% 90%,100% 10%,60% 50%);
+              animation: reward-border-rotate-reverse 15s ease-in-out infinite alternate
+  .reward-all
+    position: fixed;
+    top: calc(50% - 125px)
+    left: calc(50% - 125px)
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    width: 250px;
+    overflow-x: scroll;
+    padding: 0;
+    transform: rotateZ(-90deg); //旋转一下就能靠鼠标滚轮控制横向了。
+    &::-webkit-scrollbar
+      display: none
+    .reward-item
+      height: 250px;
+      width: 250px;
+      transform: rotateZ(90deg); //内部元素再转回来
+      img
+        height: 250px;
+        border-radius: 50%;
+        width: 250px;
+        opacity: 0.9;
+      .reward-qr-code-desc
+        display: block;
+        position: absolute;
+        width: fit-content;
+        height: 25px;
+        line-height: 25px;
+        padding: 2px 5px;
+        border-radius: 5px;
+        text-shadow: 1px 1px 2px black;
+        color: white;
+        background: var(--ark-reward-title);
+        top: 20px;
+        right: 0px;
+        transform: rotateZ(-45deg);
+        font-family: 'UnidreamLED','TaikoMagic';
+@keyframes reward-border-rotate
+  from
+    transform: rotateZ(0deg)
+  to
+    transform: rotateZ(360deg)
+@keyframes reward-border-rotate-reverse
+  from
+    transform: rotateZ(360deg)
+  to
+    transform: rotateZ(0deg)

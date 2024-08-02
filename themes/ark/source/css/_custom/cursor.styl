@@ -1,0 +1,56 @@
+// 鼠标指针变量
+:root
+  --cursor-arrow: url('/img/cur/arrow.cur')
+  --cursor-backrunning: url('/img/cur/backrunning.cur')
+  --cursor-ban: url('/img/cur/ban.cur')
+  --cursor-busy: url('/img/cur/busy.cur')
+  --cursor-handwriting: url('/img/cur/handwriting.cur')
+  --cursor-help: url('/img/cur/help.cur')
+  --cursor-link: url('/img/cur/link.cur')
+  --cursor-move: url('/img/cur/move.cur')
+  --cursor-input: url('/img/cur/input.cur')
+/* 鼠标指针 */
+body,
+html
+  *
+    cursor var(--cursor-arrow),auto
+
+img
+  cursor var(--cursor-handwriting),auto !important
+
+a
+  &:hover
+    cursor var( --cursor-link),auto
+
+input
+  &:hover
+    cursor var(--cursor-input),auto
+article
+  p,li,span,h1,h2,h3,h4,h5,h6
+    &:hover
+      cursor var(--cursor-input),auto
+summary
+  &:hover
+    cursor var(--cursor-help),auto !important
+button
+  &:hover
+    cursor var(--cursor-backrunning),auto
+
+i
+  &:hover
+    cursor var(--cursor-arrow),auto
+
+#footer-wrap
+  a
+    &:hover
+      cursor var(--cursor-link),auto
+
+#pagination
+  .page-number
+    &:hover
+      cursor var(--cursor-link),auto
+
+#nav
+  .site-page
+    &:hover
+      cursor var(--cursor-link),auto

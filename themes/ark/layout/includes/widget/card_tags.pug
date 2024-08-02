@@ -1,0 +1,17 @@
+if theme.aside.card_tags.enable
+  if site.tags.length
+    input#card-tags-anchor.card-widget-visible(type="radio" name="card-widget-visible" value="card-tags")
+    .card-widget.card-tags
+      .item-headline
+        i.fas.fa-tags
+        span= _p('aside.card_tags')
+
+      - let tagLimit = theme.aside.card_tags.limit === 0 ? 0 : theme.aside.card_tags.limit || 40
+      if theme.aside.card_tags.ark
+        .card-tag-cloud!= arkTags({source: site.tags, posts: site.posts.length,limit: tagLimit, unit: 'em'})
+          a.ark-tags-button(href=`/` + config.tag_dir + `/`)
+            span.ark-tags-more= _p('aside.card_tags_more')
+      else if theme.aside.card_tags.color
+        .card-tag-cloud!= cloudTags({source: site.tags, minfontsize: 1.15, maxfontsize: 1.45, limit: tagLimit, unit: 'em'})
+      else
+        .card-tag-cloud!= tagcloud({min_font: 1.1, max_font: 1.5, amount: tagLimit , color: true, start_color: '#999', end_color: '#99a9bf', unit: 'em'})

@@ -1,0 +1,329 @@
+//default color:
+:root
+  --ark-menu-background: rgba(80, 80, 80, 0.4) //卡片整体背景色
+  --ark-menu-border: rgba(153, 54, 44,0.8) //卡片字体底衬颜色
+[data-theme="dark"]
+  --ark-menu-background: rgba(61, 147, 204, 0.4)
+  --ark-menu-border: rgba(153, 54, 44,0.8)
+  
+
+// flex的居中属性，太多地方用到了，直接简化一下
+ark-menu-flexcenter()
+  display flex
+  align-items center
+  justify-content center
+// 菜单选项的基本样式
+ark-menu-item()
+  display: block
+  width: 230px;
+  height: 230px;
+  ark-menu-flexcenter()
+  background: var(--ark-menu-background);
+  box-shadow: 0 0 0 3px inset rgba(233,233,233,0.8);
+  border-radius: 50%;
+  overflow: hidden
+  i.fa-fw,
+  svg.icon
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    opacity: 0.5;
+    z-index: 999
+  .site-page-link
+    display: flex
+    align-items: center
+    z-index: 1000
+    height: 50px;
+    width: 150%;
+    font-size: 30px;
+    font-family: 'TaikoMagic';
+    background: var(--ark-menu-border);
+    color: white
+    text-shadow: 2px 2px 3px #222222
+    &:hover
+      color: var(--ark-post-item-font-hover)
+#ark-menu-box
+  position fixed
+  z-index 1001
+  width 100vw
+  height 100vh
+  margin 0
+  overflow hidden
+  ark-menu-flexcenter()
+  //初始化动画默认效果
+  *
+    transition: all 0.5s linear
+  &.arksink
+    z-index -1000
+  //- 左侧水平仪
+  .ark-menu-horizontal-left
+    display: block;
+    position: fixed;
+    left: calc(50% - 550px);
+    top: calc(50% - 200px);
+    opacity: 1
+    transition: opacity 0.3s linear
+    .ark-menu-horizontal-left-line
+      display: block;
+      height: 400px;
+      position: relative;
+      width: 23px;
+      background: repeating-linear-gradient(to top, white 0%,white 0.5%, transparent 0.51%,transparent 9.91%);
+      animation: horizontal-left-move 2s ease-in-out infinite alternate
+      &::before
+        content: "";
+        position: absolute;
+        height: 400px;
+        left: 0px;
+        top: 3%;
+        width: 4px;
+        background: repeating-linear-gradient(to top, #fff 0%, #fff 3%, transparent 3.01%, transparent 9.91%);
+        clip-path: inset(53% 0 0 0);
+      &::after
+        content: "";
+        position: absolute;
+        height: 400px;
+        left: 0px;
+        bottom: 3%;
+        width: 4px;
+        background: repeating-linear-gradient(to top, transparent 0%, transparent 6.9%, white 6.91%, white 9.91%);
+        clip-path: inset(0 0 53% 0);
+  //- 右侧水平仪
+  .ark-menu-horizontal-right
+    display: block;
+    position: fixed;
+    right: calc(50% - 550px);
+    top: calc(50% - 200px);
+    opacity: 1
+    transition: opacity 0.3s linear
+    .ark-menu-horizontal-right-line
+      display: block;
+      height: 400px;
+      position: relative;
+      width: 23px;
+      background: repeating-linear-gradient(to top, white 0%,white 0.5%, transparent 0.51%,transparent 9.91%);
+      animation: horizontal-right-move 2s ease-in-out infinite alternate
+      &::before
+        content: "";
+        position: absolute;
+        height: 400px;
+        right: 0px;
+        top: 3%;
+        width: 4px;
+        background: repeating-linear-gradient(to top, #fff 0%, #fff 3%, transparent 3.01%, transparent 9.91%);
+        clip-path: inset(53% 0 0 0);
+      &::after
+        content: "";
+        position: absolute;
+        height: 400px;
+        right: 0px;
+        bottom: 3%;
+        width: 4px;
+        background: repeating-linear-gradient(to top, transparent 0%, transparent 6.9%, white 6.91%, white 9.91%);
+        clip-path: inset(0 0 53% 0);
+  //瞄准镜上方水平仪
+  .ark-menu-horizontal-top
+    display: block;
+    position: fixed;
+    height: 15px;
+    width: 200px;
+    left: calc(50% - 100px)
+    bottom: calc(50% + 120px);
+    overflow-x: hidden
+    padding: 5px 0 0 0
+    opacity: 1
+    transition: opacity 0.3s linear
+    // 水平仪上方小三角
+    &::before
+      content: "";
+      height: 5px;
+      width: 10px;
+      display: block;
+      background: #fff;
+      position: absolute;
+      bottom: 10px;
+      left: 70%;
+      clip-path: polygon(0 0,100% 0,50% 100%);
+    // 刻度短线
+    .ark-menu-horizontal-top-line
+      height: 5px;
+      width: 300px;
+      position: relative;
+      animation: horizontal-center-move 3s ease-in infinite alternate
+      left: -50px;
+      background: repeating-linear-gradient(to left, #fff 0%, #fff 0.5%, transparent 0.51%, transparent 2%);
+      // 刻度长线
+      &::before
+        content: "";
+        height: 10px;
+        position: absolute;
+        width: 300px;
+        top: 0px;
+        left: 0px;
+        background: repeating-linear-gradient(to left, #fff 0%, #fff 0.5%, transparent 0.51%, transparent 10%);
+  //瞄准镜下方水平仪
+  .ark-menu-horizontal-bottom
+    display: block;
+    position: fixed;
+    height: 15px;
+    width: 200px;
+    left: calc(50% - 100px)
+    top: calc(50% + 120px);
+    overflow-x: hidden
+    padding: 0 0 5px 0
+    opacity: 1
+    transition: opacity 0.3s linear
+    // 水平仪上方小三角
+    &::before
+      content: "";
+      height: 5px;
+      width: 10px;
+      display: block;
+      background: #fff;
+      position: absolute;
+      bottom: 0px;
+      left: 30%;
+      clip-path: polygon(0 100%,100% 100%,50% 0);
+    .ark-menu-horizontal-bottom-line
+      height: 5px;
+      width: 300px;
+      position: relative;
+      animation: horizontal-center-move 3s ease-out infinite alternate
+      left: -50px;
+      top: 5px
+      background: repeating-linear-gradient(to left, #fff 0%, #fff 0.5%, transparent 0.51%, transparent 2%);
+      &::before
+        content: "";
+        height: 10px;
+        position: absolute;
+        width: 300px;
+        bottom: 0px;
+        left: 0px;
+        background: repeating-linear-gradient(to left, #fff 0%, #fff 0.5%, transparent 0.51%, transparent 10%);
+  #ark-menu
+    clip-path: circle(100%)
+    transition: clip-path 0.3s linear 0.2s
+    width: 230px;
+    height: 230px;
+    border-radius: 50%
+    text-align: center;
+    position: relative
+    &::after
+      content: "";
+      display: block;
+      height: 120%;
+      width: 126%;
+      position: absolute;
+      background: linear-gradient(to right, var(--ark-post-item-screen) 30px, #e9e9e9, #e9e9e9 60px, transparent), linear-gradient(to left, var(--ark-post-item-screen) 30px, #e9e9e9, #e9e9e9 60px, transparent);
+      z-index: 3;
+      left: -13%;
+      top: -10%;
+      clip-path: polygon(50% 50%, 45px 50%, 45px 45px, 60px 45px, 65px 40px, 40px 40px, 40px 65px, 45px 60px, 45px 50%, 25px 50%, 25px calc(50% - 15px), 10px calc(50% - 15px), 10px calc(50% - 10px), 25px calc(50% - 10px), 25px calc(50% - 2.5px), 0 calc(50% - 2.5px), 0 50%, 50% 50%, 45px 50%, 45px calc(100% - 45px), 60px calc(100% - 45px), 65px calc(100% - 40px), 40px calc(100% - 40px), 40px calc(100% - 65px), 45px calc(100% - 60px), 45px 50%, 25px 50%, 25px calc(50% + 15px), 10px calc(50% + 15px), 10px calc(50% + 10px), 25px calc(50% + 10px), 25px calc(50% + 2.5px), 0 calc(50% + 2.5px), 0 50%, 50% 50%, calc(100% - 45px) 50%, calc(100% - 45px) 45px, calc(100% - 60px) 45px, calc(100% - 65px) 40px, calc(100% - 40px) 40px, calc(100% - 40px) 65px, calc(100% - 45px) 60px, calc(100% - 45px) 50%, calc(100% - 25px) 50%, calc(100% - 25px) calc(50% - 15px), calc(100% - 10px) calc(50% - 15px), calc(100% - 10px) calc(50% - 10px), calc(100% - 25px) calc(50% - 10px), calc(100% - 25px) calc(50% - 2.5px), 100% calc(50% - 2.5px), 100% 50%, 50% 50%, calc(100% - 45px) 50%, calc(100% - 45px) calc(100% - 45px), calc(100% - 60px) calc(100% - 45px), calc(100% - 65px) calc(100% - 40px), calc(100% - 40px) calc(100% - 40px), calc(100% - 40px) calc(100% - 65px), calc(100% - 45px) calc(100% - 60px), calc(100% - 45px) 50%, calc(100% - 25px) 50%, calc(100% - 25px) calc(50% + 15px), calc(100% - 10px) calc(50% + 15px), calc(100% - 10px) calc(50% + 10px), calc(100% - 25px) calc(50% + 10px), calc(100% - 25px) calc(50% + 2.5px), 100% calc(50% + 2.5px), 100% 50%, 50% 50%);
+    .ark-menu-pagination
+      position: absolute
+      bottom: 20px
+    .menu-item-container,
+    .menu-item-second-container
+      width: 230px;
+      height: 230px;
+      overflow hidden
+      border-radius: 50%
+      position: relative
+      .site-page
+        clip-path: polygon(40% 0,45% 5%,55% 5%,60% 0,100% 0,100% 40%,95% 45%,95% 55%,100% 60%,100% 100%,60% 100%,55% 95%,45% 95%,40% 100%,0 100%,0 60%,5% 55%,5% 45%,0 40%,0 0)
+        ark-menu-item()
+        .site-page-link
+          justify-content center
+      // 二级菜单左半屏
+      .site-cube-left
+        position: absolute;
+        top: 0;
+        left: 0;
+        clip-path: polygon(40% 0, 45% 5%, 50% 5%, 50% 95%, 45% 95%, 40% 100%, 0 100%, 0 60%, 5% 55%, 5% 45%, 0 40%, 0 0)
+        ark-menu-item()
+        .site-page-link
+          justify-content flex-start
+          padding-left: 10%
+      // 二级菜单右半屏
+      .site-cube-right
+        clip-path: polygon(50% 5%,55% 5%,60% 0,100% 0,100% 40%,95% 45%,95% 55%,100% 60%,100% 100%,60% 100%,55% 95%,50% 95%)
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        overflow-y: scroll;
+        height: 237px;
+        .menu-item-second
+          width: 230px;
+          height: 230px;
+          ark-menu-flexcenter()
+          .site-page
+            position: relative;
+            .site-page-link
+              justify-content flex-end
+              padding-right: 10%
+  #ark-menu-end-btn
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: calc(50% + 210px);
+    color: var(--ark-cab-border-color)
+    opacity: 1
+    transition: opacity 0.3s linear 0.2s
+    &:hover
+      color: var(--ark-post-item-font-hover)
+      transition: all 0.3s
+  //结束效果
+  &.arkend
+    //默认动画曲线效果
+    *
+      transition: all 0.7s linear 0.3s
+    // 左侧水平仪
+    .ark-menu-horizontal-left
+      opacity: 0
+      transition: opacity 0.3s linear 0.4s
+    // 右侧水平仪
+    .ark-menu-horizontal-right
+      opacity: 0
+      transition: opacity 0.3s linear 0.4s
+    // 瞄准镜上方水平仪
+    .ark-menu-horizontal-top
+      opacity: 0
+      transition: opacity 0.3s linear 0.3s
+    // 瞄准镜下方水平仪
+    .ark-menu-horizontal-bottom
+      opacity: 0
+      transition: opacity 0.3s linear 0.3s
+    // 菜单栏主体
+    #ark-menu
+      clip-path: circle(0)
+      transition: clip-path 0.3s linear 0.5s
+    // 菜单栏关闭按钮
+    #ark-menu-end-btn
+      opacity: 0
+      transition: opacity 0.2s linear
+    
+
+//动画部分
+//左侧水平仪标尺上下移动
+@keyframes horizontal-left-move
+  from
+    transform: skewX(5deg) translateY(10px)
+  to
+    transform: skewX(5deg) translateY(-10px)
+//右侧水平仪标尺上下移动
+@keyframes horizontal-right-move
+  from
+    transform: skewX(-5deg) translateY(10px)
+  to
+    transform: skewX(-5deg) translateY(-10px)
+//中心水平仪标尺左右移动
+@keyframes horizontal-center-move
+  from
+    left: -100px
+  to
+    left: 0px
+          
+
+
+          

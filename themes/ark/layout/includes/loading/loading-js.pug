@@ -1,0 +1,42 @@
+.pjax-reload
+  script(async).
+    var preloader = {
+      endLoading: () => {
+        document.body.style.overflow = 'auto';
+        document.getElementById('ark-cab-box').classList.add("arkend") //驾驶舱结束动画
+        document.getElementById('loading-box').classList.add("arkend") //加载进度结束动画
+        setTimeout(function(){
+          document.getElementById('ark-cab-box').classList.add("arksink") //驾驶舱下沉至底
+          document.getElementById('loading-box').classList.add("loaded") //加载动画下沉至底
+        },1800)
+    
+        //用于判断是否第一次加载
+        if(sessionStorage.getItem("isReload")){
+          //若显示已经加载过
+          return true
+        }else{
+          //若为第一次加载
+          sessionStorage.setItem("isReload", true)
+          //- SAONotify('Welcome','!{theme.aside.card_announcement.content}')
+        }
+                
+      },
+      initLoading: () => {
+        document.body.style.overflow = '';
+        var ark_cab = document.getElementById('ark-cab-box');
+        var loading_box = document.getElementById('loading-box')
+        // 做下判断，已经在上层就不用再上浮了。
+        if (ark_cab && (ark_cab.className.indexOf('arksink') > -1) ){
+          ark_cab.classList.remove("arksink") //驾驶舱上浮
+          document.getElementById('ark-cab-box').classList.remove("arkend") //驾驶舱启动
+        }
+        if (loading_box && (loading_box.className.indexOf('loaded') > -1) ){
+          loading_box.classList.remove("loaded") //加载动画上浮
+          loading_box.classList.remove("arkend") //加载动画启动
+        }
+        
+      }
+    }
+    window.addEventListener('load',()=> {preloader.endLoading()})
+    document.getElementById('loading-box').addEventListener('click',()=> {preloader.endLoading()})
+    

@@ -1,0 +1,23 @@
+#fixed-cardwidget-dashboard
+  input#dashboard-anchor.card-widget-visible(type="radio" name="card-widget-visible" value="dashboard")
+  //- 侧栏吸附按钮，悬停时显示圆球，点击展开
+  label.fixed-cardwidget-hover-button(for='dashboard-anchor')  
+  //- 侧栏版块显隐控制按钮
+  .fixedcard-anchor-container
+    //- post
+    if is_post()
+      each postitem in theme.fixed_card_widget.post
+        .fixedcard-anchor-item
+          label.card-widget-visible(title=postitem.title for=postitem.anchor)
+            i(class=postitem.icon)
+    else
+      each pageitem in theme.fixed_card_widget.page
+        .fixedcard-anchor-item
+          label.card-widget-visible(title=pageitem.title for=pageitem.anchor)
+            i(class=pageitem.icon) 
+
+//- 默认启用关闭按钮
+input#quit-anchor.card-widget-visible(type="radio" name="card-widget-visible" value="quit" checked)
+//- 关闭版块背景蒙版
+label.quit-visible(for='quit-anchor')
+

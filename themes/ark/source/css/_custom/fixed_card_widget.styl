@@ -1,0 +1,136 @@
+input.card-widget-visible[type="radio"]
+  display: none
+  &:checked
+    & + div.card-widget
+      visibility visible!important
+      display block!important
+      position fixed!important
+      bottom 0
+      left 0
+      top 0
+      right 0
+      margin auto
+      margin-bottom auto!important
+      margin-top auto!important
+      max-width 300px
+      max-height 500px
+      width auto
+      height: fit-content
+      z-index: 22
+      animation cardVisible 0.3s linear forwards!important
+      & > div
+        max-height 460px
+        overflow scroll
+        &::-webkit-scrollbar
+          display: none
+// 宽屏状态下不显示侧栏显隐控制按钮
+@media screen and (min-width: 900px)
+  #fixed-cardwidget-dashboard
+    display:none;
+  label.quit-visible
+    display: none;
+// 侧栏显隐控制按钮仅在手机端可见
+@media screen and (max-width: 900px)
+  #fixed-cardwidget-dashboard
+    position: fixed
+    display: flex
+    background: transparent
+    left: 0;
+    top: 40%;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 5px 50px 10px 0px;
+    z-index: 21;
+    *
+      transition: all 0.3s ease-in-out
+    &:hover label.fixed-cardwidget-hover-button,
+    input#dashboard-anchor:checked ~ .fixed-cardwidget-hover-button
+      border-radius: 50%
+      width: w = 50px;
+      height w
+      border: 10px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.5);
+      box-shadow: 0 0 2px inset rgba(0,0,0,0.8)
+    label.fixed-cardwidget-hover-button
+      display: block
+      background: rgba(255,255,255,0.5)
+      height: 50px;
+      width: 6px;
+      border-radius: 3px;
+    input#dashboard-anchor
+      display: none
+      &:checked
+        & ~ .fixedcard-anchor-container
+          display: flex;
+          .fixedcard-anchor-item
+            animation buttonVisible 0.3s ease-in forwards
+            &:nth-child(1)
+              transform: rotate(-17deg)
+            &:nth-child(2)
+              transform: rotate(17deg)
+            &:nth-child(3)
+              transform: rotate(-51deg)
+            &:nth-child(4)
+              transform: rotate(51deg)
+            &:nth-child(5)
+              transform: rotate(-85deg)
+            &:nth-child(6)
+              transform: rotate(85deg)
+    .fixedcard-anchor-container
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      position relative
+      left: -80px
+      width: auto
+      .fixedcard-anchor-item
+        display: flex;
+        padding: 0px;
+        height: 50px;
+        align-items: center;
+        justify-content: flex-end;
+        position: absolute;
+        left: 50px;
+        top: 0
+        transform-origin: left;
+        label.card-widget-visible
+          display: flex;
+          padding: 10px;
+          width: 50px;
+          height: 50px;
+          align-items: center;
+          justify-content: center;
+          color: rgba(0,0,0,0.8);
+          background: rgba(255,255,255,0.5)
+          border-radius: 50%
+
+input#quit-anchor
+  display: none
+  &:checked
+    &+ label.quit-visible
+      display: none
+label.quit-visible
+  display: block
+  position fixed
+  z-index: 20;
+  top: 0;
+  left: 0;
+  height: 100vh
+  width: 100vw
+  background: rgba(0,0,0,0.3)
+  backdrop-filter: blur(5px)
+
+// 卡片开启动画效果
+@keyframes cardVisible
+  from
+    transform rotateX(90deg)
+  to
+    transform rotateX(0deg)
+//- 按钮展开动画
+@keyframes buttonVisible
+  from
+    width 0
+    opacity: 0
+  to
+    width: 130px
+    opacity: 1

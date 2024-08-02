@@ -1,0 +1,17 @@
+if theme.reward.enable && theme.reward.QR_code
+  input#reward-anchor(type="checkbox" name="reward-anchor")
+  label.reward-box(for="reward-anchor")
+    //- 纯粹的装饰品圆环
+    .reward-border
+      .reward-border-first
+        .reward-border-second
+          .reward-border-third
+            .reward-border-fourth
+    //- 打赏二维码
+    .reward-all
+      each item in theme.reward.QR_code
+        - var clickTo = (item.itemlist||item).link ? (item.itemlist||item).link : (item.itemlist||item).img
+        .reward-item
+          a(href=clickTo target='_blank')
+            img.reward-qr-code-img(src=url_for((item.itemlist||item).img) alt=(item.itemlist||item).text)
+          .reward-qr-code-desc=(item.itemlist||item).text

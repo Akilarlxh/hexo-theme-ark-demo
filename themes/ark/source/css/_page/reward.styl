@@ -1,0 +1,50 @@
+.reward-table
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  .reward-caption
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  .reward-tr
+    background-color: transparent;
+    border: 1px solid #ddd;
+    padding: .35em;
+  .reward-th,
+  .reward-td
+    padding: .625em;
+    text-align: center;
+  .reward-th
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+
+
+@media screen and (max-width: 768px)
+  .reward-table
+    border: 0;
+    .reward-caption
+      font-size: 1.3em;
+    .reward-thead
+      display: none;
+    .reward-tr
+      display: block;
+      margin-bottom: 10px;
+    .reward-td
+      position: relative;
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: 16px;
+      height: 30px;
+      line-height: 1;
+      text-align: right;
+      &::before
+        position: absolute;
+        left: 10px;
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+
+

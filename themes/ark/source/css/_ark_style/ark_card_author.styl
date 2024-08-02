@@ -1,0 +1,188 @@
+//default color:
+:root
+  --card-author-avatar-groove-border: rgba(244, 252, 252, 0.3)
+  --card-author-avatar-dashed-border: rgba(70, 162, 223, 0.3)
+  --card-author-name-background: rgba(35, 32, 32, 0.8)
+  --card-author-font-color: #ffffff
+  --card-author-name-decoration: rgba(153, 54, 44,0.8)
+  --card-author-radio: rgba(73, 176, 245, 0.8)
+  --card-author-radio-checked: rgba(153, 54, 44,0.8)
+[data-theme="dark"]
+  --card-author-avatar-groove-border: rgba(146, 206, 241, 0.6)
+  --card-author-avatar-dashed-border: rgba(0, 77, 119, 0.8)
+  --card-author-name-background: rgba(80, 80, 80, 0.598)
+  --card-author-font-color: #ffffff
+  --card-author-name-decoration: #f2eff0
+  --card-author-radio: rgba(73, 176, 245, 0.558)
+  --card-author-radio-checked: rgba(212, 31, 31, 0.58)
+
+.card-widget
+  &.card-author
+    height: auto
+    width: 100%
+    position: relative
+    display: flex
+    justify-content: center
+    flex-direction: column
+    .author-main-content
+      .author-check-content
+        label.author-info
+          height: 150px
+          width: 100%
+          display: flex
+          flex-direction: row
+          align-items: center
+          justify-content: space-around
+          input[type="checkbox"]#author-info
+            display: none
+            &:checked
+              &~ .author-name
+                display: flex
+                transform-origin: left
+                animation: ejectrotate 0.4s cubic-bezier(0.59, 0.01, 0.48, 1.17) 1
+          .author-avatar
+            z-index: 1
+            position: relative
+            img
+              width: w = 90px
+              height: w
+            &::before
+              content: "";
+              width: w = 90px
+              height: w
+              position: absolute;
+              background: transparent;
+              border: 10px groove var(--card-author-avatar-groove-border);
+              box-shadow: 0 0 10px var(--card-author-avatar-dashed-border);
+              border-radius: 50%;
+              left: -10px;
+              top: -10px;
+              animation: borderrotate 3s linear infinite alternate
+            &::after
+              content: "";
+              width: w = 80px
+              height: w
+              position: absolute;
+              background: transparent;
+              border: 5px dashed var(--card-author-avatar-dashed-border);
+              box-shadow: 0 0 5px inset var(--card-author-avatar-groove-border);
+              border-radius: 50%;
+              left: 0px;
+              top: 0px;
+              animation: borderrotate 10s linear infinite
+          .author-name
+            background: var(--card-author-name-background)
+            color:var(--card-author-font-color)
+            box-shadow: 0 0 10px inset var(--card-author-avatar-groove-border);
+            position: relative
+            z-index: 0
+            height: 100px
+            display: none
+            width: 160px
+            align-items: center
+            font-size: 30px
+            justify-content: center
+            margin: 0 0 0 -25px
+            clip-path: polygon(0 20px, 20px 0, 100% 0, 100% 15px, calc(100% - 15px) 25px, calc(100% - 15px) calc(100% - 25px), 100% calc(100% - 15px), 100% 100%, calc(50% + 15px) 100%, 50% calc(100% - 15px), 20px calc(100% - 15px), 0 calc(100% - 30px))
+            &::before
+              content: ""
+              position: absolute
+              height: 100px
+              width: 160px
+              background: var(--card-author-name-decoration)
+              clip-path: polygon(15% 30%, 30% 30%, 35% 20%, 20% 20%, 15% 30%, 40% 30%, 45% 20%, 60% 20%, 55% 30%, 35% 30%, 65% 30%, 70% 20%, 85% 20%, 80% 30%, 15% 30%, 15% 70%, 80% 70%, 85% 80%, 20% 80%, 15% 70%, 15% 30%)
+      .author-switch-content
+        width: 100%
+        height: 200px
+        display: flex
+        flex-direction: row
+        flex-wrap: nowrap
+        justify-content: center
+        input[type="radio"].switch-content
+          width: 60px
+          height: 0
+          margin: 0 5px
+          position: relative
+          &:hover
+            cursor var(--cursor-link),auto
+          &::after
+            content: ""
+            width: 60px
+            height: 20px
+            background: var(--card-author-radio)
+            display: block
+          &[value="description"]
+            &::after
+              clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+            &:checked
+              &::after
+                background: var(--card-author-radio-checked)
+              &~ .author-description-box
+                clip-path: inset(0%);
+          &[value="social"]
+            &::after
+              clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+              transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+            &:checked
+              &::after
+                background: var(--card-author-radio-checked)
+              &~ .author-social-box
+                clip-path: inset(0%);
+                transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+          &[value="site-data"]
+            &::after
+              clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+            &:checked
+              &::after
+                background: var(--card-author-radio-checked)
+              &~ .author-data-box
+                clip-path: inset(0%);
+                transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+        label
+          font-family: 'TaikoMagic';
+          display: flex
+          position: absolute;
+          bottom: 0px;
+          height: 160px;
+          width: 100%
+          align-items: center;
+          justify-content: center;
+          clip-path: inset(50%);
+          transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+          &.author-description-box
+            .author-description
+              font-size: 18px!important;
+              word-break: break-all
+              color: var(--card-author-font-color)!important
+          &.author-social-box
+            flex-direction: column;
+            .card-author-button
+              color: var(--card-author-font-color)!important
+            .social-icons
+              a
+                margin: 0 5px
+                font-size: 26px!important
+                
+          &.author-data-box
+            .site-data
+              align-items: center;
+              justify-content: center;
+              display: flex;
+              a
+                margin: 0 20px;
+                color: var(--card-author-font-color)
+
+@keyframes ejectrotate
+  0%
+    transform: rotateZ(90deg);
+    opacity: 0
+  100%
+    transform: rotateZ(0deg);       
+    opacity: 1
+@keyframes borderrotate
+  0%
+    transform: rotateZ(0deg);
+  100%
+    transform: rotateZ(360deg);       
+
+

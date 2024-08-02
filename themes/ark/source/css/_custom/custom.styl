@@ -1,0 +1,68 @@
+:root
+  --title-day-display: initial
+  --title-night-display: none
+[data-theme="dark"]
+  --title-day-display: none
+  --title-night-display: initial
+//首页艺术字标题
+@media screen and (max-width: 768px)
+  #page-header
+    #site-info
+      #site-title
+        img
+          max-width: 350px
+
+#page-header
+  #site-info
+    #site-title
+      img
+        height: auto
+        width: 100%
+        max-width: 550px
+        &.site-title-day
+          display: var(--title-day-display)
+        &.site-title-night
+          display: var(--title-night-display)
+/* 浮动滚动条 */
+*
+  &::-webkit-scrollbar
+    width: 8px
+    height: 8px
+
+  &::-webkit-scrollbar-thumb
+    border-radius: 8px
+    cursor:pointer
+    background-color var(--ark-post-item-border)
+
+  &::-webkit-scrollbar-thumb:hover
+    opacity: 1;
+    display: block!important;
+    transition: opacity 0.5s
+  &::-webkit-scrollbar-corner
+    background-color transparent
+  &::-webkit-scrollbar-track
+    background-color: transparent;
+  ::-moz-selection
+    color #fff
+    background-color var(--ark-post-item-border)
+html
+  overflow-y: overlay;
+
+/* 页脚吸底音乐伸缩 */
+.aplayer
+  &.aplayer-fixed
+    &.aplayer-narrow
+      .aplayer-body
+        left -66px !important
+        &:hover
+          left 0px !important
+
+// diff代码块
+figure
+  &.highlight
+    pre
+      .deletion
+        color #ff0000 !important
+      .addition
+        color #00bf03 !important
+

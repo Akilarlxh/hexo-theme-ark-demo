@@ -1,0 +1,61 @@
+div#post-comment
+  &.fixedcomment
+    position fixed!important
+    top 0
+    width 60%!important
+    right 0
+    padding 25px 80px 20px 40px!important
+    height 100%
+    overflow scroll
+    z-index 90
+    background rgba(222, 222, 222, 0.95)
+    box-shadow 3px 2px 14px #464340
+    animation fixedright 0.5s linear
+    &::-webkit-scrollbar
+      width 0
+
+div#quit-board
+  display none
+  &.fixedcomment
+    position fixed
+    display block!important
+    left 0
+    top 0
+    width 40%
+    height 100%
+    z-index 89!important
+    background rgba(25,25,25,0.3)
+    filter blur(4px) !important
+    animation fixedleft 0.5s linear
+
+@media screen and (max-width: 768px)
+  div#post-comment
+    &.fixedcomment
+      padding 25px 30px 20px 20px!important
+      width 90%!important
+      right 0
+  div#quit-board
+    &.fixedcomment
+      width 10%
+
+[data-theme="dark"]
+  div#post-comment
+    &.fixedcomment
+      background rgba(35, 35, 35, 0.95)
+      box-shadow 3px 2px 12px #90a1a4
+  div#quit-board
+    &.fixedcomment
+      background rgba(147, 146, 128, 0.3)
+
+
+@keyframes fixedright
+  from
+    right -50%
+  to
+    right 0
+
+@keyframes fixedleft
+  from
+    left -50%
+  to
+    left 0

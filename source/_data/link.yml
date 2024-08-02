@@ -1,0 +1,25 @@
+- class_name: 🍨冰糖红茶 #分组名称
+  class_desc: 冰糖红茶组织成员 #分组描述
+  showonside: true #控制是否显示在侧栏友链分组
+  link_list:
+    - name: 🧊小冰博客 #网站名称
+      offline: true #联动侧栏友链，显示在线状态
+      link: https://zfe.space/ #网站链接
+      avatar: https://npm.elemecdn.com/akilar-friends@latest/avatar/zfe.space.jpg #网站头像
+      descr: 做个有梦想的人！ #网站描述
+      siteshot: https://npm.elemecdn.com/akilar-friends@latest/siteshot/zfe.space.jpg #网站截图，不填会通过API自动截图
+    - name: 🍭Akilarの糖果屋 
+      link: https://akilar.top/
+      siteshot: https://npm.elemecdn.com/akilar-friends@latest/siteshot/akilar.top.jpg
+      avatar: https://npm.elemecdn.com/akilar-friends@latest/avatar/akilar.top.jpg
+      descr: 欢迎光临糖果屋
+    - name: ☕张洪Heo 
+      link: https://blog.zhheo.com/
+      avatar: https://npm.elemecdn.com/akilar-friends@latest/avatar/blog.zhheo.com.jpg
+      descr: 爱折腾的设计师
+      siteshot: https://npm.elemecdn.com/akilar-friends@latest/siteshot/blog.zhheo.com.jpg
+    - name: 🦔贰猹的小窝 
+      link: https://noionion.top/
+      avatar: https://npm.elemecdn.com/akilar-friends@latest/avatar/noionion.top.jpg
+      descr: 用这生命中的每一秒，给自己一个不后悔的未来
+      siteshot: https://npm.elemecdn.com/akilar-friends@latest/siteshot/noionion.top.jpg

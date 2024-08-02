@@ -1,0 +1,23 @@
+extends includes/layout.pug
+
+block content
+  #post
+    include includes/post/post-info.pug
+    article#article-container.post-content!=page.content
+    include includes/third-party/share/index.pug
+    include includes/post/copyright.pug
+    //- include includes/post/post-copyright.pug   
+    //- if theme.reward.enable && theme.reward.QR_code
+    //-   !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+    
+    if page.businesscard ? page.businesscard : theme.businesscard.enable
+      include includes/custom/businesscard.pug
+    if theme.post_pagination
+      #pagenation-anchor
+      include includes/pagination.pug
+    if page.comments !== false && theme.comments && theme.comments.use
+      - var commentsJsLoad = true
+      !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})  
+    //- ad
+    if theme.ad && theme.ad.post
+      .ads-wrap!=theme.ad.post

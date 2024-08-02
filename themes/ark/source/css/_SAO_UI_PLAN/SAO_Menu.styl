@@ -1,0 +1,433 @@
+if hexo-config('SAO_Utils.enable')
+  @font-face
+    font-family 'SAOUI'
+    src url('https://npm.elemecdn.com/akiblog@1.0.2/fontsdest/SAOUI.ttf')
+    font-display swap
+  #SAO-back
+    display none
+    position fixed
+    width 100%
+    top 0
+    left 0
+    height 100%
+    background rgba(3, 3, 3, 0.5)
+    z-index 9999
+    vertical-align super
+  @media screen and (max-width: 768px)
+    #SAO_Utils_Switch
+      display none!important
+  #SAO-menu
+    display block
+    position absolute
+
+  #SAO-menu-content
+    font-family 'SAOUI' ,Langar,-apple-system, sans-serif
+    display block
+
+  .utils-list-item
+    font-weight bolder
+    margin-top 10px
+    width 66px
+    height 66px
+    background rgba(255,255,255,0)
+    text-align center
+    vertical-align super
+    position relative
+    display block
+    border-radius 50%
+    color rgba(255,255,255,0.5)
+    border 3px solid
+    box-shadow 2px 2px 2px #888888
+    i
+      width 52px
+      height 52px
+      background rgba(255,255,255,0.5)
+      display block
+      margin auto
+      vertical-align middle
+      top 4px
+      position relative
+      line-height 100%
+      border-radius 50%
+      &::before
+        color rgba(60, 60, 61,0.7)
+        font-size 30px
+        text-align center
+        font-weight bolder
+        top 20px
+        position relative
+    &:hover
+      color #eda60c
+      i
+        background #eda60c
+        &::before
+          color white
+    .user-panel
+      transform rotate3d(-1,1,0,20deg)
+      display none
+      position absolute
+      width 250px
+      height auto
+      background rgba(231, 231, 232,0.9)
+      border-radius 10px
+      left -290px
+      top -170px
+      box-shadow 3px 3px 2px #888888
+      &:before
+        position absolute
+        content ''
+        border-left 25px solid #f9f9f9
+        border-top 10px solid transparent
+        border-bottom 10px solid transparent
+        left 250px
+        top calc(50% - 10px)
+
+  .user-panel
+    .user-panel-name
+      font-size 20px
+      color rgba(60, 60, 61,0.7)!important
+      display block
+      width 100%
+      height 30px
+      position relative
+      background #f9f9f9
+      border-top-left-radius 10px
+      border-top-right-radius 10px
+    .user-panel-img
+      padding-inline 30px
+      padding-bottom 0px
+      padding-top 20px
+      width 100%
+      height 50%
+      overflow hidden
+      background #f9f9f9
+      text-align center
+      box-shadow -1px 10px 15px #888888
+      img
+        width 100%
+      &::after
+        position absolute
+        content ''
+        border-top 15px solid #f9f9f9
+        border-right 10px solid transparent
+        border-left 10px solid transparent
+        left 30%
+        top calc(50% + 45px)
+    .user-panel-properties
+      font-size 18px
+      padding 20px
+      margin 0 auto
+      height 150px
+      width 100%
+      overflow scroll
+      display inline-block
+      color rgba(60, 60, 61,0.7)!important
+      text-align left
+      &::-webkit-scrollbar
+        display none
+  .user-panel-name
+    &::after
+      display block
+      width 80%
+      margin-left 10%
+      height 2px
+      content ''
+      background rgba(160, 159, 160,0.9)
+      border-radius 5px
+
+  .menu-list
+    display none
+    position relative
+    border 1px solid
+    left 90px
+    border-image linear-gradient(to top, transparent, #f9f9f9 20%, #f9f9f9 80%, transparent) 0 0 0 1
+    margin-left 10px
+    width auto
+    height auto
+    padding 10px 30px
+    &:before
+      position absolute
+      content ''
+      border-right 25px solid #f9f9f9
+      border-top 10px solid transparent
+      border-bottom 10px solid transparent
+      left -30px
+      top calc(50% - 10px)
+    &:after
+      position absolute
+      content ''
+      border 3px solid #333
+      border-radius 50%
+      left -20px
+      top 50%
+      transform translateY(-50%)
+
+  .menu-list-item
+    display block
+    border-radius 3px
+    background rgba(249, 249, 249, 0.79)
+    color #494748
+    width 180px
+    padding 20px 25px
+    margin-bottom 5px
+    position relative
+    left -25px
+    font-weight bolder
+    color rgb(77, 72, 73)
+    box-shadow 3px 3px 2px #888888
+    height 40px
+    text-align left
+    &:last-child
+      margin-bottom 0
+    &:hover
+      cursor pointer
+      background-color #eda60c
+      color #f9f9f9
+      .menu-child
+        display block
+        z-index 10000
+      i
+        &::before
+          cursor pointer
+          background-color #f9f9f9
+          color #eda60c
+    i
+      display block
+      vertical-align super
+      font-family 'SAOUI' ,Langar,-apple-system, sans-serif
+      font-size 18px
+      position absolute
+      border-radius 0
+      background rgba(77, 72, 73,0)!important
+      left -10px
+      width 100%
+      margin-left 15px
+      top -2px
+      left -15px
+      padding-top 10px
+      &::before
+        margin-inline 15px
+        width 20px
+        height 20px
+        font-size 16px
+        color white
+        background rgb(77, 72, 73)
+        padding 5px
+        border-radius 50%
+        top -2px
+        @extend .fontawesomeIcon
+  .menu-child
+    display none
+    position relative
+    border 1px solid
+    left 180px
+    border-image linear-gradient(to top, transparent, #f9f9f9 20%, #f9f9f9 80%, transparent) 0 0 0 1
+    margin-left 20px
+    width auto
+    height auto
+    padding 10px 30px
+    &:before
+      position absolute
+      content ''
+      border-right 25px solid #f9f9f9
+      border-top 10px solid transparent
+      border-bottom 10px solid transparent
+      left -30px
+      top calc(50% - 10px)
+    &:after
+      position absolute
+      content ''
+      border 3px solid #333
+      border-radius 50%
+      left -20px
+      top 50%
+      transform translateY(-50%)
+
+  .menu-list-child
+    display block
+    border-radius 3px
+    background rgba(249, 249, 249, 0.79)!important
+    color #494748
+    width 180px
+    padding 20px 25px
+    margin-bottom 5px
+    position relative
+    left -25px
+    top 0px
+    font-weight bolder
+    color rgb(77, 72, 73)
+    box-shadow 3px 3px 2px #888888
+    height 40px
+    &:last-child
+      margin-bottom 0
+    i
+      display block
+      font-family 'SAOUI' ,Langar,-apple-system, sans-serif
+      font-size 18px
+      vertical-align super
+      position absolute
+      border-radius 0
+      background rgba(77, 72, 73,0)!important
+      left -10px
+      width 100%
+      height 40px
+      margin-left 15px
+      top -2px
+      left -15px
+      padding-top 10px
+      &::before
+        margin-inline 15px
+        font-size 16px
+        color white!important
+        width 20px
+        height 20px
+        background rgb(77, 72, 73)!important
+        padding 5px
+        border-radius 50%
+        top -2px
+        @extend .fontawesomeIcon
+    &:hover
+      cursor pointer
+      background-color #eda60c!important
+      color #f9f9f9!important
+      i
+        &::before
+          cursor pointer
+          background-color #f9f9f9!important
+          color #eda60c!important
+
+  .active
+    display block!important
+  if hexo-config('SAO_Utils.ThreeD')
+    #SAO-menu
+      animation Updown 1s linear infinite alternate
+    .utils-list-item
+      .user-panel
+        transform rotate3d(0,-1,0,20deg)
+
+    .menu-list
+      transform rotate3d(0,1,0,20deg)
+
+    .menu-child
+      transform rotate3d(0,1,0,5deg)
+    .user-panel
+      .user-panel-img
+        box-shadow -1px 10px 15px #888888
+    @keyframes Updown
+      from
+        margin-top 20px
+      to
+        margin-top 10px
+  if hexo-config('SAO_Utils.hoverShow') ? hexo-config('SAO_Utils.hoverShow') : 1
+    .utils-list-item
+      &:hover
+        .user-panel
+          display block
+          z-index 10000
+    .menu-list-item
+      &:hover
+        .menu-child
+          display block
+          z-index 10000
+
+  if hexo-config('SAO_Utils.Instructions') ? hexo-config('SAO_Utils.Instructions') : 1
+    #SAO-logout
+      z-index 9999
+      background rgba(204, 204, 207,0.8)
+      font-family 'SAOUI' ,Langar,-apple-system, sans-serif
+      font-weight bolder
+      text-shadow 1px 1px 1px #888888
+      height 240px
+      width 350px
+      display none
+      position fixed
+      bottom 0
+      right 0
+      left 0
+      top 0
+      margin auto auto
+      border-radius 5px
+      box-shadow 2px 2px 10px #888888
+
+    .logout-title
+      background rgba(249, 249, 249, 0.8)
+      color rgba(60, 60, 61,0.7)
+      height 60px
+      width 100%
+      display block
+      font-size 20px
+      text-align center
+      border-top-left-radius 5px
+      border-top-right-radius 5px
+      padding-top 10px
+
+    .logout-alert
+      background rgba(220, 220, 220,0.8)
+      color rgba(60, 60, 61,0.7)
+      height 90px
+      width 100%
+      display block
+      text-align center
+      padding-top 30px
+      box-shadow 0px 0px 15px rgb(188, 188, 188) inset
+
+    .logout-button
+      background rgba(249, 249, 249, 0.8)
+      height 90px
+      width 100%
+      display block
+      text-align center
+      border-bottom-left-radius 5px
+      border-bottom-right-radius 5px
+      padding-top 30px
+
+    .logout-confirm
+      background rgba(#2f79d4,0)
+      border-radius 50%
+      display inline-block
+      width 36px
+      height 36px
+      margin-inline 60px
+      border 1px solid
+      border-color #2f79d4
+      button
+        background #2f79d4
+        text-align center
+        border-radius 50%
+        font-size 18px
+        color white
+        display block
+        width 30px
+        height 30px
+        margin 2px
+
+    .logout-cancel
+      background rgba(#cb3749,0)
+      border-radius 50%
+      display inline-block
+      width 36px
+      height 36px
+      margin-inline 60px
+      border 1px solid
+      border-color #cb3749
+      button
+        background #cb3749
+        text-align center
+        border-radius 50%
+        font-size 18px
+        font-weight bolder
+        color white
+        display block
+        width 30px
+        height 30px
+        margin 2px
+
+    .activeLogout
+      display block!important
+      animation flashOpen 1s ease alternate
+
+    @keyframes flashOpen
+      from
+        transform rotateX(90deg)
+      to
+        transform rotateX(0deg)

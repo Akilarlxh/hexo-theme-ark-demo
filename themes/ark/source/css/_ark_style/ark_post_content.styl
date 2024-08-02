@@ -1,0 +1,89 @@
+//default color:
+:root
+  --ark-left-border-color: #818181
+  --ark-right-border-color: #f58b49
+  --ark-container-background: rgba(50, 50, 50, 0.8)
+  --ark-container-font: #ffffff
+[data-theme="dark"]
+  --ark-left-border-color: #37708f
+  --ark-right-border-color: #1849a0
+  --ark-container-background: rgba(30, 49, 55, 0.7)
+  --ark-container-font: #ffffff
+
+ark_border()
+  &::before
+    content: ""
+    z-index: -1
+    background: var(--ark-left-border-color)
+    height: 100%
+    width: 60%
+    position: absolute
+    left: 0
+    top: 0
+    clip-path: polygon(calc(100% - 1px) 27px, 100% 24px, calc(100% - 30px) 24px, calc(100% - 30px) 22px, calc(100% - 45px) 12px, calc(100% - 140px) 12px, calc(100% - 127px) 22px, calc(100% - 30px) 22px, calc(100% - 30px) 24px, calc(100% - 130px) 24px, calc(100% - 143px) 12px, 39px 12px, 0 51px, 0 calc(100% - 51px), 39px calc(100% - 12px), calc(100% - 143px) calc(100% - 12px), calc(100% - 130px) calc(100% - 24px), calc(100% - 1px) calc(100% - 24px), 100% calc(100% - 27px), calc(100% - 30px) calc(100% - 27px), calc(100% - 30px) calc(100% - 22px), calc(100% - 45px) calc(100% - 12px), calc(100% - 140px) calc(100% - 12px), calc(100% - 127px) calc(100% - 22px), calc(100% - 30px) calc(100% - 22px), calc(100% - 30px) calc(100% - 27px), calc(100% - 132px) calc(100% - 27px), calc(100% - 145px) calc(100% - 15px), 41px calc(100% - 15px), 3px calc(100% - 54px), 3px 54px, 41px 15px, calc(100% - 145px) 15px, calc(100% - 132px) 27px)
+  &::after
+    content: ""
+    z-index: -1
+    background: var(--ark-right-border-color)
+    height: 100%
+    width: 40%
+    position: absolute
+    right: 0
+    top: 0
+    clip-path: polygon(0 0, 40px 23px, calc(100% - 39px) 23px,100% 51px,100% calc(100% - 51px),calc(100% - 39px) calc(100% - 23px),40px calc(100% - 23px),0 100%,0 calc(100% - 5px),40px calc(100% - 27px),calc(100% - 41px) calc(100% - 27px),calc(100% - 5px) calc(100% - 53px),calc(100% - 5px) 53px,calc(100% - 41px) 27px,42px 27px,0 5px)
+
+    
+// 取消顶栏标题，缩小高度
+#page-header.post-bg
+  height: 100px;
+//正文版块
+#content-inner
+  //过期版块声明临时样式
+  .post-outdate-notice
+    display: block;
+    border: 2px dotted red;
+    padding: 5px 20px;
+    border-radius: 5px;
+  #post,
+  #page,
+  #tag,
+  #category,
+  #archive
+    position relative
+    background: transparent
+    border-radius: 10px
+    padding: 15px 5px 15px 5px!important
+  #article-container,
+  #post-comment,
+  .tag-cloud-list,
+  .category-lists,
+  .post-copyright
+    color: var(--ark-container-font)
+    border-radius: 10px
+    padding: 10px 15px
+    width: 100%
+    height: 100%
+    background: var(--ark-container-background)
+    backdrop-filter: blur(5px)
+    transform: translateZ(0) //激活gup计算，让高斯模糊由gpu去完成，减少卡顿，详情参看http://www.ichenhua.cn/read/226
+      
+// 所有异形边框特效仅在宽屏生效
+@media screen and (min-width: 768px)
+  #content-inner
+    #post,
+    #page,
+    #tag,
+    #category
+      padding: 45px 15px 45px 15px!important
+      ark_border()
+    #article-container,
+    #post-comment,
+    .tag-cloud-list,
+    .category-lists,
+    .post-copyright
+      padding: 30px 25px
+      clip-path: polygon(20px 20px, 0px 40px, 0px calc(100% - 20px), 20px 100%, 100px 100%, 120px calc(100% - 20px), calc(50% - 20px) calc(100% - 20px), 50% 100%, calc(100% - 20px) 100%, 100% calc(100% - 20px), 100% 40px, calc(100% - 20px) 19px, 50% 20px, calc(50% - 20px) 0px, calc(50% - 160px) 0px, calc(50% - 180px) 20px)
+  #post
+    #post-info
+      clip-path: polygon(20px 20px, 0 40px, 0 calc(100% - 20px), 20px 100%, 100px 100%, 120px calc(100% - 20px), calc(50% - 20px) calc(100% - 20px), 50% 100%, calc(100% - 20px) 100%, 100% calc(100% - 20px), 100% 40px, calc(100% - 20px) 20px, calc(50% + 80px) 20px, calc(50% + 60px) 0, calc(50% - 60px) 0, calc(50% - 80px) 20px);
+

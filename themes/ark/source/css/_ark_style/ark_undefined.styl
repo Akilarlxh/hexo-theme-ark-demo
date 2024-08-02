@@ -1,0 +1,59 @@
+//default color:
+:root
+  --recent-post-background: rgba(50, 50, 50, 0.9) //卡片整体背景色
+  --recent-post-color: #ffffff //卡片字体颜色
+  --recent-post-content-border: rgba(117, 118, 120,0.8) //内容版块边框颜色
+  --recent-post-title-background: rgba(40, 40, 40,0.95) //卡片标题背景色
+  --recent-post-title-color: #ffffff //卡片标题字体颜色
+  --recent-post-title-corner-background: rgba(153, 54, 44,0.8) //卡片角标背景色
+  --recent-post-title-corner-color: rgba(233,233,233,0.9) //卡片角标字体颜色
+[data-theme="dark"]
+  --recent-post-background: rgba(40, 40, 40,0.8)
+  --recent-post-color: #ffffff
+  --recent-post-content-border: rgba(0,78,119, 0.5)
+  --recent-post-title-background: rgba(10, 17, 35, 0.5)
+  --recent-post-title-color: #004e77
+  --recent-post-title-corner-background: #37708f
+  --recent-post-title-corner-color: #92cef1
+
+.recent-post-item
+  &:has(#git_container)
+    background: var(--recent-post-background)
+  &:has(#categoryBar)
+    background: linear-gradient(to bottom,transparent 30px,var(--recent-post-background) 31px,var(--recent-post-background))!important
+    padding: 20px 0px 0px 0px!important
+    clip-path: polygon(0 0, 100% 0, 100% 30px, calc(100% - 5px) 30px, 100% 45px, 100% 50px, 100% calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 0 calc(100% - 5px), 0 45px, 10px 30px, 0 30px)
+    .recent-post-item-headline
+      border-top: 8px solid var(--recent-post-title-corner-background)
+      border-left: 8px solid var(--recent-post-title-corner-background)
+      box-shadow: 0px 0px 10px var(--recent-post-content-border) inset
+      border-top-left-radius: 3px
+      border-top-right-radius: 20px
+      border-bottom-right-radius: 3px    
+      border-bottom-left-radius: 20px      
+      background: var(--recent-post-title-background)
+      color: var(--recent-post-color)
+      min-width: 8em
+      width: fit-content
+      clip-path: polygon(0 0,55px 0,60px 10px,calc(100% - 15px) 10px,100% 30px,100% 100%,30px 100%,8px 30px,0 25px)
+      padding: 0px 1em 0px 1em
+      margin: 0px 0px -20px 0px
+      position: relative
+      top: -20px
+      left: 10px
+      &:after
+        content: "akilar"
+        position: absolute
+        bottom: 0
+        font-size: 12px
+        display: block
+        right: 0
+        line-height: 1em
+        color: var(--recent-post-title-corner-color)
+        width: fit-content
+        height: 1em
+        padding: 0 5px 0 10px
+        background: var(--recent-post-title-corner-background)
+        clip-path: polygon(5px 0,100% 0,100% 100%,0 100%)
+  #git_container
+    color: var(--recent-post-color)

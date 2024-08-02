@@ -1,0 +1,89 @@
+//背景项存在则开启
+if hexo-config('background')
+  #web-bg
+    position: fixed
+    z-index: -999
+    width: 100%
+    height: 100%
+    padding: 0
+    #default-bg,
+    #dark-bg,
+    #mobile-bg,   
+    #mobile-dark-bg
+      position: fixed
+      background-attachment: local !important
+      background-position: center !important
+      background-size: cover !important
+      background-repeat: no-repeat !important
+      width: 100%
+      height: 100%
+    // 夜间模式的遮罩层
+    #dark-bg,
+    #mobile-dark-bg
+      &::before
+        position: absolute
+        width: 100%
+        height: 100%
+        background-color: rgba(0,0,0,0.6)
+        content: ''
+
+@media screen and (min-width: 900px)
+  #web-bg
+    #default-bg
+      animation web-bg-show 0.3s linear 1 forwards
+    #dark-bg
+      animation web-bg-hidden 0.3s linear 1 0.1s forwards
+    #mobile-bg
+      display: none
+    #mobile-dark-bg
+      display: none
+  [data-theme="dark"]
+    #web-bg
+      #default-bg
+        animation web-bg-hidden 0.3s linear 1 0.1s forwards
+      #dark-bg
+        animation web-bg-show 0.3s linear 1 forwards
+        
+@media screen and (max-width: 900px)
+  #web-bg
+    #default-bg
+      display: none
+    #dark-bg
+      display: none
+    #mobile-bg
+      animation web-bg-show 0.3s linear 1 forwards
+    #mobile-dark-bg
+      animation web-bg-hidden 0.3s linear 1  0.1s forwards
+
+  [data-theme="dark"]
+    #web-bg
+      #mobile-bg
+        animation web-bg-hidden 0.3s linear 1 0.1s forwards
+      #mobile-dark-bg
+        animation web-bg-show 0.3s linear 1 forwards
+
+        
+//显示效果的动画
+@keyframes web-bg-show
+  0%
+    z-index: -998
+    display: block
+    clip-path: inset(0 100% 0 0)
+  100%
+    z-index: -998
+    display: block
+    clip-path: inset(0 0 0 0)
+//消失效果的动画
+@keyframes web-bg-hidden
+  0%
+    z-index: -999
+    display: block
+    clip-path: inset(0 0 0 0)
+  99%
+    z-index: -999
+    display: block
+    clip-path: inset(0 0 0 100%)
+  100%
+    z-index: -999
+    display: none
+    clip-path: inset(0 0 0 100%)

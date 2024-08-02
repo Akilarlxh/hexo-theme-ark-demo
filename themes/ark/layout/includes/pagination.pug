@@ -1,0 +1,30 @@
+//- 文章页上一篇下一篇
+if is_post()
+  //- 替换上下篇的左右分布
+  - let prev = theme.post_pagination === 1 ? page.prev : page.next
+  - let next = theme.post_pagination === 1 ? page.next : page.prev
+  nav#pagination.pagination-post
+    if(prev)
+      - var hasPageNext = next ? 'pull-left' : 'pull-full-left'
+      .prev-post(class=hasPageNext)
+        a(href=url_for(prev.path) title=_p('pagination.prev'))
+          .prev_info=prev.title
+    if(next)
+      - var hasPagePrev = prev ? 'pull-right' : 'pull-full-right'
+      .next-post(class=hasPagePrev)
+        a(href=url_for(next.path) title=_p('pagination.next'))
+          .next_info=next.title
+//- 页面分页器
+else
+  -
+    var options = {
+      prev_text: '<i class="fas fa-chevron-left fa-fw"></i>上页',
+      next_text: '下页<i class="fas fa-chevron-right fa-fw"></i>',
+      mid_size: 1,
+      escape: false
+    }
+  nav#pagination
+    .pagination
+      if is_home()
+        - options.format = 'page/%d/#content-inner'
+      !=paginator(options)

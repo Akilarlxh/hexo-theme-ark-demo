@@ -1,0 +1,55 @@
+.recent-post-item#swiperBar
+  #ark-swiper-container
+    .swiper-wrapper.ark-swiper-wrapper
+      //- 文章卡片
+      if theme.pjax.enable
+        each item in swiper_list()
+          //- 内容版块
+          .swiper-slide.ark-swiper-item
+            //- 封面
+            .ark-swiper-item-cover
+              img.article-cover(src=item.cover title='' onerror=`this.src=` + theme.swiperBar.error_img + `; this.onerror = null;`)
+            //- 时间
+            if (theme.swiperBar.timemode === 'updated' )
+              .ark-swiper-item-time
+                span='updated:'
+                span= item.updated.format('YYYY-MM-DD')
+            else
+              .ark-swiper-item-time
+                span='published:'
+                span= item.date.format('YYYY-MM-DD')
+            //- 标题和描述
+            .ark-swiper-item-info
+              a.ark-swiper-item-title(onclick=`pjax.loadUrl("` + item.path + `");` title='')
+                .ark-swiper-item-title-link= item.title            
+              a.ark-swiper-item-description(onclick=`pjax.loadUrl("` + item.path + `");` title='')
+                .ark-swiper-item-description-text!= item.description ? item.description : theme.swiperBar.default_descr
+            //- 装饰图标盲盒
+            svg.icon.ark-swiper-item-decoration(aria-hidden="true")
+              use(xlink:href=arkIcon())
+      else
+        each item in swiper_list()
+          //- 内容版块
+          .swiper-slide.ark-swiper-item
+            //- 封面
+            a.ark-swiper-item-cover(href=item.path  title='')
+              img.article-cover(src=item.cover title='' onerror=`this.src=` + theme.swiperBar.error_img + `; this.onerror = null;`)
+            //- 时间
+            if (theme.swiperBar.timemode === 'updated' )
+              .ark-swiper-item-time
+                span='updated:'
+                span= item.updated.format('YYYY-MM-DD')
+            else
+              .ark-swiper-item-time
+                span='updated:'
+                span= item.date.format('YYYY-MM-DD')
+            //- 标题和描述
+            .ark-swiper-item-info
+              a.ark-swiper-item-title(href=item.path  title='')
+                .ark-swiper-item-title-link= item.title
+              a.ark-swiper-item-description(href=item.path  title='')
+                .ark-swiper-item-description-text!= item.description ? item.description : theme.swiperBar.default_descr
+            //- 装饰图标盲盒
+            svg.icon.ark-swiper-item-decoration(aria-hidden="true")
+              use(xlink:href=arkIcon())
+    .swiper-pagination.ark-swiper-pagination

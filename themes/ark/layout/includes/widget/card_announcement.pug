@@ -1,0 +1,7 @@
+if theme.aside.card_announcement.enable
+  input#card-announcement-anchor.card-widget-visible(type="radio" name="card-widget-visible" value="card-announcement")
+  .card-widget.card-announcement
+    .item-headline
+      i.fas.fa-bullhorn.fa-shake
+      span= _p('aside.card_announcement')
+    .announcement_content!= theme.aside.card_announcement.content

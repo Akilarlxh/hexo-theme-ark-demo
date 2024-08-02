@@ -1,0 +1,5 @@
+if theme.aside.card_categories.enable
+  if site.categories.length
+    input#card-categories-anchor.card-widget-visible(type="radio" name="card-widget-visible" value="card-categories")
+    .card-widget.card-categories
+      !=aside_categories({ limit: theme.aside.card_categories.limit === 0 ? 0 : theme.aside.card_categories.limit || 8 , expand: theme.aside.card_categories.expand })

@@ -1,0 +1,129 @@
+
+#footer
+  position: relative
+  background: transparent
+  background-attachment: scroll
+  background-position: bottom
+  background-size: cover
+  height: 100px;
+  filter: drop-shadow(0 0px 3px var(--card-widget-content-border))
+  &::before
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 100%;
+    background: var(--card-widget-background);
+    bottom: 0;
+    left: 0;
+    z-index: -1
+
+  #ark-footer-wraper
+    font-family: 'UnidreamLED','TaikoMagic';
+    position: relative
+    padding: 0px
+    width: 100%;
+    height: 100%
+    color: var(--card-widget-color)
+    text-align: center
+    display: flex;
+    flex-direction: column;
+    .ark-footer-container
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 100%
+      width: 100%
+      .ark-footer-left-corner
+        display: flex;
+        height: 100%;
+        font-size: 14px;
+        line-height: 14px;
+        color: var(--card-widget-color)
+        background: transparent
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        a
+          color: var(--card-widget-color)
+          &:hover
+            color: var(--ark-post-item-font-hover);
+        #ark-footer-bdage-container
+          display: flex;
+          height: 14px;
+          width: 180px;
+          background: transparent;
+          position: relative;
+          .ark-bdage-item
+            height: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        .ark-footer-copyright
+          .footer-separator
+            margin: 0 4px
+
+@media screen and (min-width: 768px)
+  #footer
+    &::before
+      border-radius: 0 0 30px 30px
+      clip-path: polygon(0 0, 40px 0, 60px 20px, 220px 20px, 240px 40px, 320px 40px, 380px calc(100% - 10px), calc(100% - 380px) calc(100% - 10px), calc(100% - 320px) 40px, calc(100% - 240px) 40px, calc(100% - 220px) 20px, calc(100% - 60px) 20px, calc(100% - 40px) 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0 calc(100% - 30px))
+
+    #ark-footer-wraper
+      .ark-footer-container
+        .ark-footer-left-corner
+          width: 50%;
+          padding: 25px 0 0 40px
+          #ark-footer-bdage-container
+            margin: 0 0 5px 0
+          .ark-footer-copyright
+            margin: 0 0 5px 25px
+          .ark-footer-record
+            margin: 0 0 5px 50px
+        .ark-footer-right-corner          
+          display: flex;
+          height: 100%;
+          width: 50%;
+          font-size: 14px;
+          line-height: 14px 
+          color: var(--card-widget-color)
+          background: transparent
+          align-items: flex-end;
+          justify-content: center;
+          flex-direction: column; 
+          padding: 25px 40px 0 0
+          font-family: 'UnidreamLED','TaikoMagic';   
+          position: relative
+          .ark-footer-reminder
+            margin: 0 0 5px 0
+          .ark-footer-timer
+            margin: 0 25px 5px 0
+          #ark-site-runtime
+            margin: 0 50px 5px 0
+          &::before
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            right: 20px;
+            bottom: 18px;
+            z-index: -1;
+            background: linear-gradient(to right,transparent, var(--ark-post-item-border), transparent);
+            transform: skewX(-45deg); 
+@media screen and (max-width: 768px)
+  #footer
+    &::before
+      border-radius: 0 0 0 30px
+      clip-path: polygon(0 0, 40px 0, 60px 20px, 220px 20px, 240px 40px, 320px 40px, 380px calc(100% - 10px), 100% calc(100% - 10px), 100% 100%, 30px 100%, 0 calc(100% - 30px))
+    #ark-footer-wraper
+      .ark-footer-container
+        .ark-footer-left-corner
+          width: 100%;
+          padding: 25px 0 0 40px
+          #ark-footer-bdage-container
+            margin: 0 0 5px 0
+          .ark-footer-copyright
+            margin: 0 0 5px 25px
+          .ark-footer-record
+            margin: 0 0 5px 50px
+        .ark-footer-right-corner
+          display: none

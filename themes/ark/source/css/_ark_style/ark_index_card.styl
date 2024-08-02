@@ -1,0 +1,409 @@
+//default color:
+:root
+  --ark-post-item-transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)//动画效果
+  --ark-post-item-border: rgba(153, 54, 44,0.8) //卡片边框颜色
+  --ark-post-item-background: rgba(67, 66, 65,0.8) //背景色
+  --ark-post-item-screen: rgba(61, 146, 204,0.6) //描述卡片背景
+  --ark-post-item-font-color: #fff //字体颜色
+  --ark-post-item-font-hover: #d97f17//文字悬停颜色
+  --ark-post-item-box-shadow: rgba(111, 160, 225,0.8) //边框光晕颜色
+  --ark-post-item-text-shadow: rgba(50, 51, 50,0.7) //字体光晕颜色
+[data-theme="dark"]
+  --ark-post-item-border: rgba(55, 112, 143,0.8) //卡片边框颜色
+  --ark-post-item-background: rgba(47, 66, 70,0.8) //背景色
+  --ark-post-item-screen: rgba(61, 146, 204,0.6) //描述卡片背景
+  --ark-post-item-font-color: rgb(233, 233, 233)//字体颜色
+  --ark-post-item-font-hover: #887fb9//文字悬停颜色
+  --ark-post-item-box-shadow: rgba(17, 170, 235, 0.8) //边框光晕颜色
+  --ark-post-item-text-shadow: rgba(50, 51, 50,0.7) //字体光晕颜色
+//顶栏底栏基本属性
+ark_post_item_line()
+  display: flex;
+  width: 100%;
+  height: 40px;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  position: relative
+  font-family: 'UnidreamLED','TaikoMagic';
+//时间栏
+ark_post_item_time()
+  width: fit-content;
+  height: 40px;
+  background: var(--ark-post-item-background);
+  color: var(--ark-post-item-font-color);
+  padding: 5px 15px;
+  font-size: 15px;
+  display: flex;
+  position: relative;
+  z-index: 3;
+  align-items: center;
+  justify-content: center;
+  border: 5px groove var(--ark-post-item-border);
+  transform: skewX(45deg);
+  clip-path: polygon(0 50%,35px 5px,50% 5px,50% 0,100% 0,100% 50%,calc(100% - 35px) calc(100% - 5px),50% calc(100% - 5px),50% 100%,0 100%);
+  *
+    transform: skewX(-45deg);
+    margin: 0px 3px
+    ark_post_item_link_hover()
+//置顶，评论数，分类，标题等元数据。
+ark_post_item_meta(skewXdeg,reverseskew,insetwidth,borderwidth,borderstyle)
+  display: flex;
+  position: absolute;
+  background: var(--ark-post-item-background);
+  border-color: var(--ark-post-item-border); 
+  font-size: 14px;
+  z-index: 3;
+  height: 18px;
+  line-height: 14px;
+  transition: var(--ark-post-item-transition)
+  transform: skewX(skewXdeg);
+  clip-path: inset(insetwidth);
+  border-width: borderwidth;
+  border-style: borderstyle;
+  *
+    transform: skewX(reverseskew);
+    margin: 0px 2px
+    color: var(--ark-post-item-font-color)
+    ark_post_item_link_hover()
+  &:hover
+    clip-path: inset(0 0 0 0);
+    transition: var(--ark-post-item-transition)
+//两侧的异形边框
+ark_post_item_border()
+  &::before 
+    width: 100%;
+    z-index: 3
+    height: 100%;
+    left: 0;
+    top: 0;
+    content: ""
+    background: var(--ark-post-item-border)
+    position: absolute
+    clip-path: polygon(50% 50%, 35px 50%, 30px calc(50% - 5px), 30px 50%, 25px 50%, 25px calc(50% - 25px), 15px calc(50% - 30px), 15px 10px, 30px 0, 10px 0px, 0 10px, 0 calc(100% - 10px), 10px 100%, 30px 100%, 15px calc(100% - 10px), 15px calc(50% + 30px),25px calc(50% + 25px), 25px 50%, 30px 50%, 30px calc(50% + 5px), 35px 50%, 50% 50%, calc(100% - 35px) 50%, calc(100% - 30px) calc(50% - 5px), calc(100% - 30px) 50%, calc(100% - 25px) 50%, calc(100% - 25px) calc(50% - 25px), calc(100% - 15px) calc(50% - 30px), calc(100% - 15px) 10px, calc(100% - 30px) 0, calc(100% - 10px) 0px, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, calc(100% - 30px) 100%, calc(100% - 15px) calc(100% - 10px), calc(100% - 15px) calc(50% + 30px),calc(100% - 25px) calc(50% + 25px), calc(100% - 25px) 50%, calc(100% - 30px) 50%, calc(100% - 30px) calc(50% + 5px), calc(100% - 35px) 50%, 50% 50%)
+//悬停链接颜色
+ark_post_item_link_hover()
+  &:hover
+    transition: all 0.3s
+    color: var(--ark-post-item-font-hover)
+//封面和标题的基础样式
+ark_post_item_cover_title()
+  background: var(--ark-post-item-background)
+  overflow: hidden      
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 2
+  transition: var(--ark-post-item-transition)
+//左半边切分
+ark_post_item_left_content()
+  left: 0
+  top: 0
+  border-radius: 15px 0 0 15px;
+  clip-path: polygon(calc(100% - 80px) 50%, calc(100% - 50px) calc(50% - 30px), 100% calc(50% - 30px), 100% 0, 0 0, 0 100%, 100% 100%, 100% calc(50% + 30px), calc(100% - 50px) calc(50% + 30px))
+//左半边切分悬停
+ark_post_item_left_content_hover()
+  clip-path: polygon(0 50%, 10px calc(50% - 5px), 30% calc(50% - 5px), 40% 0, 0 0, 0 100%, 40% 100%, 30% calc(50% + 5px), 10px calc(50% + 5px))
+  transition: var(--ark-post-item-transition)
+//右半边切分
+ark_post_item_right_content()
+  right: 0
+  top: 0
+  border-radius: 0 15px 15px 0;
+  clip-path: polygon(80px 50%, 50px calc(50% - 30px), 0 calc(50% - 30px), 0 0, 100% 0, 100% 100%, 0 100%, 0 calc(50% + 30px), 50px calc(50% + 30px))
+//右半边切分悬停
+ark_post_item_right_content_hover()
+  clip-path: polygon(100% 50%, calc(100% - 10px) calc(50% - 5px), 70% calc(50% - 5px), 60% 0, 100% 0, 100% 100%, 60% 100%, 70% calc(50% + 5px), calc(100% - 10px) calc(50% + 5px))
+  transition: var(--ark-post-item-transition)
+//上半边切分
+ark_post_item_top_content()
+  left: 0
+  top: 0
+  border-radius: 15px 15px 0 0;
+  clip-path: polygon(50% calc(100% - 30px), calc(50% - 30px) calc(100% - 30px), calc(50% - 45px) 100%, 0 100%, 0 0, 100% 0, 100% 100%, calc(50% + 45px) 100%, calc(50% + 30px) calc(100% - 30px));
+//上半边切分悬停
+ark_post_item_top_content_hover()
+  clip-path: polygon(30% 30px, 20px 30px, 20px calc(100% - 15px), 0 100%, 0 0, 50% 0, calc(100% - 45px) 0, calc(100% - 60px) 15px, calc(30% + 10px) 15px)
+  transition: var(--ark-post-item-transition)
+//下半边切分
+ark_post_item_bottom_content()
+  left: 0
+  bottom: 0
+  border-radius: 0 0 15px 15px;
+  clip-path: polygon(50% 30px, calc(50% - 30px) 30px, calc(50% - 45px) 0, 0 0, 0 100%, 100% 100%, 100% 0, calc(50% + 45px) 0, calc(50% + 30px) 30px);
+//下半边切分悬停
+ark_post_item_bottom_content_hover()
+  clip-path: polygon(70% calc(100% - 30px), calc(100% - 20px) calc(100% - 30px), calc(100% - 20px) 15px, 100% 0, 100% 100%, 50% 100%, 45px 100%, 60px calc(100% - 15px), calc(70% - 10px) calc(100% - 15px))
+  transition: var(--ark-post-item-transition)
+
+//gitcalendar样式临时性
+.recent-post-item
+  &#gitcalendarBar
+    background: transparent!important;
+    div#git_container
+      background: var(--ark-post-item-background);;
+      border-radius: 15px;
+// 卡片本体
+.recent-post-item
+  margin: 30px 0px;
+  &.ark-post-card
+    z-index: 0
+    display: flex;
+    position: relative
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+    background: transparent;
+    //顶栏
+    .recent-post-item-headline
+      ark_post_item_line()
+      .recent-post-time
+        top: 20px;
+        transition: var(--ark-post-item-transition)
+        ark_post_item_time()
+      .article-meta-sticky
+        left: 20px
+        bottom: 0;
+        ark_post_item_meta(-45deg,45deg,0 calc(100% - 25px) 0 0,1px 10px 0 30px,solid dashed solid groove)
+        &:hover
+          &~ .recent-post-time
+            top: 40px;
+            transition: var(--ark-post-item-transition)
+      .article-meta-comments
+        right: 20px
+        bottom: 0;
+        ark_post_item_meta(45deg,-45deg,0 0 0 calc(100% - 25px),1px 30px 0 10px,solid groove solid dashed)
+        &:hover
+          &~ .recent-post-time
+            top: 40px;
+            transition: var(--ark-post-item-transition)
+    //底栏
+    .recent-post-item-bottomline
+      ark_post_item_line()
+      .recent-post-time
+        bottom:20px;
+        transition: var(--ark-post-item-transition)
+        ark_post_item_time()
+      .article-meta-categories
+        left: 20px
+        top: 0;
+        ark_post_item_meta(45deg,-45deg,0 calc(100% - 30px) 0 0 ,0 10px 1px 30px,solid dashed solid groove)
+        &:hover
+          &~ .recent-post-time
+            bottom: 40px;
+            transition: var(--ark-post-item-transition)
+      .article-meta-tags
+        right: 20px
+        top: 0;
+        ark_post_item_meta(-45deg,45deg,0 0 0 calc(100% - 30px),0 30px 1px 10px,solid groove solid dashed)
+        &:hover
+          &~ .recent-post-time
+            bottom: 40px;
+            transition: var(--ark-post-item-transition)
+    //文章封面、标题、描述主体版块
+    .recent-post-content
+      display: flex;
+      z-index: 0
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      position: relative;
+      &:hover
+        a.recent-post-description
+          transform: rotateX(0deg)
+          transition: var(--ark-post-item-transition) 0.5s
+      .recent-post-cover
+        ark_post_item_cover_title()
+        img.article-cover
+          object-fit: cover;
+          height: 100%
+          width: 100%;
+      //文章标题
+      .recent-post-info
+        ark_post_item_cover_title()
+        .article-title-link    
+          font-size: 24px;
+          text-align: center;
+          color: var(--ark-post-item-font-color);
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          -webkit-line-clamp: 2
+          ark_post_item_link_hover()
+      //装饰性背景图标
+      svg.ark-decoration
+        position: absolute;
+        z-index: 0;
+        opacity: 0.3;
+        color: var(--ark-post-item-font-color); 
+        width: 150px;
+        height: 150px;
+        top: calc(50% - 75px);
+        left: calc(50% - 75px);
+        ark_post_item_link_hover()
+      //文章描述内容
+      a.recent-post-description
+        z-index: 1
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ark-post-item-screen);
+        border-radius: 5px;
+        box-shadow: 0 0 10px var(--ark-post-item-box-shadow);
+        transform: rotateX(90deg)
+        transition: var(--ark-post-item-transition)
+        padding: 20px 20px;
+        .article-content-text
+          color: var(--ark-post-item-font-color);
+          text-shadow: 3px 3px 3px var(--ark-post-item-text-shadow);
+          font-size: 16px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          -webkit-line-clamp: 4
+//pc端样式适配
+@media screen and (min-width:900px)
+  //gitcalendar样式兼容性适配
+  .recent-post-item
+    &#gitcalendarBar
+      position: relative
+      padding: 30px 30px!important;
+      ark_post_item_border()
+  // 卡片本体
+  .recent-post-item
+    &.ark-post-card
+      width: 100%;
+      height: 320px;
+      padding: 0px 30px;
+      //两侧的异形边框
+      ark_post_item_border()
+      //文章封面、标题、描述主体版块
+      .recent-post-content
+        width: 100%;
+        height: 240px;
+        &.both,
+        &.left
+          &:hover
+            .recent-post-cover
+              ark_post_item_left_content_hover()
+            .recent-post-info
+              ark_post_item_right_content_hover()
+        &.right
+          &:hover
+            .recent-post-cover
+              ark_post_item_right_content_hover()
+            .recent-post-info
+              ark_post_item_left_content_hover()  
+        .recent-post-cover
+          width: 50%;
+          height: 240px; 
+        //文章标题
+        .recent-post-info
+          width: 50%;
+          height: 240px; 
+          .article-title-link
+            font-size: 24px;
+        &.both,
+        &.left
+          .recent-post-cover
+            ark_post_item_left_content()
+          .recent-post-info
+            ark_post_item_right_content()
+            .article-title-link
+              margin: 0px 20px 0px 80px
+        &.right
+          .recent-post-cover
+            ark_post_item_right_content()
+          .recent-post-info
+            ark_post_item_left_content()
+            .article-title-link
+              margin: 0px 80px 0px 20px
+        //文章描述内容
+        a.recent-post-description
+          height: 200px;
+          margin: 20px 0
+          width: 60%;
+          clip-path: polygon(0 50%,40px 0,calc(100% - 40px) 0,100% 50%,calc(100% - 40px) 100%,40px 100%)
+//平板宽度双栏样式适配
+@media screen and (min-width:768px) and (max-width:900px)  
+  #recent-posts
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    // 卡片本体
+    #pagination
+      width: 100%
+    .recent-post-item
+      &.ark-post-card
+        width: 48%;
+        height: 360px;
+        margin: 0 1% 30px 1%
+        //文章封面、标题、描述主体版块
+        .recent-post-time
+          .article-meta-label
+            display: none
+        .recent-post-content
+          width: 100%;
+          height: 280px;
+          &:hover
+            .recent-post-cover
+              ark_post_item_top_content_hover()
+            .recent-post-info
+              ark_post_item_bottom_content_hover()
+          .recent-post-cover
+            width: 100%;
+            height: 140px; 
+            ark_post_item_top_content()
+          //文章标题
+          .recent-post-info
+            width: 100%;
+            height: 140px; 
+            ark_post_item_bottom_content()
+            .article-title-link
+              margin: 10px 10px
+              font-size: 18px;
+          //文章描述内容
+          a.recent-post-description
+            height: 200px;
+            margin: 40px 0
+            width: 70%;       
+//手机端样式适配
+@media screen and (max-width:768px)
+  // 卡片本体
+  .recent-post-item
+    &.ark-post-card
+      width: 100%;
+      height: 360px;
+      //文章封面、标题、描述主体版块
+      .recent-post-time
+        .article-meta-label
+          display: none
+      .recent-post-content
+        width: 100%;
+        height: 280px;
+        &:hover
+          .recent-post-cover
+            ark_post_item_top_content_hover()
+          .recent-post-info
+            ark_post_item_bottom_content_hover()
+        .recent-post-cover
+          width: 100%;
+          height: 140px; 
+          ark_post_item_top_content()
+        //文章标题
+        .recent-post-info
+          width: 100%;
+          height: 140px; 
+          ark_post_item_bottom_content()
+          .article-title-link
+            margin: 10px 10px
+            font-size: 18px;
+        //文章描述内容
+        a.recent-post-description
+          height: 200px;
+          margin: 40px 0
+          width: 70%;

@@ -1,0 +1,150 @@
+//default color:
+.nav-fixed
+  #ark-nav-box
+    top: -100px
+    transition: all 0.5s
+  &.nav-visible
+    #ark-nav-box
+      top: 0px
+      transition: all 0.5s
+.ark-nav-box
+  position: fixed;
+  width: 100%;
+  z-index 999
+  transition: all 0.5s
+  top: 0px
+  .ark-nav
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative
+    color: var(--ark-post-item-font-color)
+    text-shadow: 1px 1px 2px #494748
+    filter: drop-shadow(0 0px 3px var(--card-widget-content-border))
+    a
+      color: var(--ark-post-item-font-color)
+      &:hover
+        color: var(--ark-post-item-font-hover)
+    &::before
+      position: absolute;
+      width: 100%;
+      background: var(--card-widget-background);
+      top: 0;
+      left: 0;
+      z-index: -1
+      display: block
+      content: ""
+    .ark-nav-message-container
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      flex-direction: row;
+      .ark-nav-message-item
+        display: inline-flex
+        justify-content: center
+        align-items: center;
+      .ark-nav-message-weather
+        .s-sticker-tmp.module
+          color: var(--ark-post-item-font-color) !important;
+          font-family: 'TaikoMagic' !important;
+        .s-sticker-city.module
+          color: var(--ark-post-item-font-color) !important;
+          font-family: 'TaikoMagic' !important;
+      .ark-nav-message-date
+        .ark-nav-message-date-box
+          display: flex;
+          align-items: center;
+          position absolute
+          background transparent
+          transform rotateX(0deg)
+          transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17);
+          opacity 1
+          font-family: 'UnidreamLED','TaikoMagic';
+        .ark-nav-message-title-box
+          display: flex;
+          align-items: center;
+          position absolute
+          background transparent
+          transform rotateX(-180deg)
+          transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17);
+          opacity 0
+          font-family: 'TaikoMagic';      
+        &:hover
+          .ark-nav-message-date-box
+            transform rotateX(180deg)
+            opacity 0
+            transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17);
+          .ark-nav-message-title-box
+            transform rotateX(0deg)
+            opacity 1
+            transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17);
+      .ark-nav-message-function
+        justify-content: center;
+        .ark-nav-function
+          display: flex;
+          align-items: center;
+          margin: 0 3px
+@media screen and (min-width: 768px)
+  .ark-nav-box
+    .ark-nav
+      height: 50px;
+      &::before
+        height: 100px;
+        clip-path: polygon(0 100%, 40px 100%, 60px calc(100% - 20px), 220px calc(100% - 20px), 240px calc(100% - 40px), 320px calc(100% - 40px), 380px 10px, calc(100% - 380px) 10px, calc(100% - 320px) calc(100% - 40px), calc(100% - 240px) calc(100% - 40px), calc(100% - 220px) calc(100% - 20px), calc(100% - 60px) calc(100% - 20px), calc(100% - 40px) 100%, 100% 100%, 100% 30px, calc(100% - 30px) 0, 30px 0, 0 30px)
+      .ark-nav-message-container
+        height: 50px;
+        width: 100%;
+        .ark-nav-message-item
+          height: 50px
+        .ark-nav-message-weather
+          width 25%
+        .ark-nav-message-date
+          width 50%
+          .ark-nav-message-date-box
+            justify-content: center;
+            width 50%
+            height: 50px
+            font-size: 20px;
+          .ark-nav-message-title-box
+            justify-content: center;
+            width 50%
+            height: 50px
+            font-size: 20px;
+        .ark-nav-message-function
+          width 25%
+
+@media screen and (max-width: 768px)
+  .ark-nav-box
+    .ark-nav
+      height: 50px;
+      &::before
+        height: 100px;
+        clip-path: polygon(100% 100%, calc(100% - 40px) 100%, calc(100% - 60px) calc(100% - 20px), calc(100% - 220px) calc(100% - 20px), calc(100% - 240px) calc(100% - 40px), calc(100% - 320px) calc(100% - 40px), calc(100% - 380px) 10px, 0 10px, 0 0, calc(100% - 30px) 0, 100% 30px)
+      .ark-nav-message-container
+        height: 50px;
+        width: 100%;
+        .ark-nav-message-item
+          height: 50px
+        .ark-nav-message-weather
+          display: none
+        .ark-nav-message-date
+          order: 1
+          width 80%
+          padding-right: 120px
+          .ark-nav-message-date-box
+            justify-content: flex-end;
+            width 80%
+            height: 50px
+            font-size: 20px;
+          .ark-nav-message-title-box
+            justify-content: flex-end;
+            width 80%
+            height: 50px
+            font-size: 20px;
+        .ark-nav-message-function
+          padding-right: 30px
+          order: 3
+          width 20%
+        
+

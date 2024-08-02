@@ -1,0 +1,188 @@
+:root
+  --ark-loading-shadow-color: rgba(226, 248, 24, 0.8)
+  --ark-loading-power-color: rgba(40, 99, 200, 0.8) 
+  --ark-loading-power-shadow: rgba(14, 219, 255, 0.8)
+[data-theme="dark"]
+  --ark-loading-shadow-color: rgba(24, 248, 229, 0.8)
+  --ark-loading-power-color: rgba(40, 99, 200, 0.8)
+  --ark-loading-power-shadow: rgba(14, 219, 255, 0.8)
+// flex的居中属性，太多地方用到了，直接简化一下
+ark-loading-flexcenter()
+  display flex
+  align-items center
+  justify-content center
+#loading-box
+  position fixed
+  z-index 1001
+  width 100vw
+  height 100vh
+  margin 0
+  overflow hidden
+  ark-loading-flexcenter()
+  *
+    transition: all .5s
+  &.loaded
+    z-index -1000
+  #ark-loading
+    opacity: 1
+    position relative
+    ark-loading-flexcenter()
+    width 100%
+    height 100%
+    // 光环
+    .ark-loading-border
+      //外圈光晕缺（细）
+      position: relative
+      height: 280px
+      width: 280px
+      ark-loading-flexcenter()
+      border-radius: 50%
+      box-shadow: 0 0 5px inset var(--ark-loading-shadow-color)
+      border-style: solid
+      border-color: var(--ark-loading-shadow-color) transparent var(--ark-loading-shadow-color) var(--ark-loading-shadow-color)
+      border-width: 2px
+      // 外圈缺（粗）
+      &::before
+        content: ""
+        position: absolute
+        opacity: 1
+        height: 276px
+        width: 276px
+        border-radius: 50%
+        border-style: solid
+        border-color: var(--ark-loading-shadow-color) var(--ark-loading-shadow-color) var(--ark-loading-shadow-color) transparent
+        border-width: 5px
+        top: -5px
+        left: -5px
+        animation ark-loading-rotate 5s linear infinite
+      // 内圈缺
+      &::after
+        content: ""
+        position: absolute
+        opacity: 1
+        height: 246px
+        width: 246px
+        border-radius: 50%
+        border-style: solid
+        border-color: var(--ark-loading-shadow-color)var(--ark-loading-shadow-color) var(--ark-loading-shadow-color) transparent
+        border-width: 2px
+        top: 13px
+        left: 13px
+        animation ark-loading-rotate 3s linear infinite
+      // 主体部分内容容器
+      .ark-loading-container
+        height: 280px
+        width: 280px
+        ark-loading-flexcenter()
+        flex-direction: column
+        color: white
+        font-size: 36px
+        font-family: 'UnidreamLED','TaikoMagic'
+        text-shadow: 2px 2px 3px #cecece
+        .ark-loading-tip
+          &:after
+            content: 'Loading...'
+            animation ark-loading-flash 1.5s linear infinite
+        .pace
+          pointer-events: none
+          user-select: none
+          &.pace-inactive
+            .pace-progress
+              display: none
+            .pace-activity
+              //- 中部左侧能量条
+              &::before
+                transform: skew(20deg,20deg) translateX(-2000px)
+                transition: transform 0.5s ease-in 0.3s
+              //- 中部右侧能量条
+              &::after
+                transform: skew(-20deg,-20deg) translateX(2000px)
+                transition: transform 0.5s ease-in 0.3s
+          .pace-progress
+            opacity: 1
+            position: relative
+            height: 40px
+            width: 40px
+            ark-loading-flexcenter()
+            transform: translate3d(0, 0, 0) !important
+            &::after
+              display: block
+              content: attr(data-progress-text)
+              font-size: 40px
+              line-height: 1
+              text-align: right
+          .pace-activity
+            filter: drop-shadow(0 0 3px var(--ark-loading-power-shadow))
+            //- 中部左侧能量条
+            &::before
+              top: calc(50% - 175px)
+              display: block
+              height: 350px
+              width: 100px
+              opacity: 0.6
+              content: ""
+              background: repeating-linear-gradient(to top, var(--ark-loading-power-color) 0%, var(--ark-loading-power-color) 3.5%, transparent 3.51%, transparent 5%)
+              position: fixed
+              border-radius: 5px 
+              left: calc(50% - 600px)
+              transform: skew(-30deg,-10deg)
+            //- 中部右侧能量条
+            &::after
+              top: calc(50% - 175px)
+              display: block
+              height: 350px
+              width: 100px
+              opacity: 0.6
+              content: ""
+              background: repeating-linear-gradient(to top, var(--ark-loading-power-color) 0%, var(--ark-loading-power-color) 3.5%, transparent 3.51%, transparent 5%)
+              position: fixed
+              border-radius: 5px
+              right: calc(50% - 600px)
+              transform: skew(30deg,10deg)
+
+  //结束效果
+  &.arkend
+    *
+      transition: all 1.0s ease-in 0.3s
+    #ark-loading
+      opacity: 0
+      transition: opacity 0.4s ease-in 0.6s
+      //外圈光晕缺（细）
+      .ark-loading-border
+        border-width: 0px
+        transition: border-width 0.3s ease-in 0.6s
+        // 外圈缺（粗）
+        &::before
+          opacity: 1
+          transition: opacity 0.3s ease-in 0.3s
+        // 内圈缺
+        &::after
+          opacity: 1
+          transition: opacity 0.3s ease-in 0.3s
+        .ark-loading-container
+          //- 主体内容外部刻度边框
+          .ark-loading-tip
+            opacity: 0
+            transition: opacity 0.5s ease-in 0.5s
+            &:after
+              content: 'Loaded!' !important
+
+              
+// 动画效果
+// 闪烁效果
+@keyframes ark-loading-flash
+  from
+    opacity 0
+  to
+    opacity 1
+// 旋转效果
+@keyframes ark-loading-rotate
+  from
+    transform rotateZ(0deg)
+  to
+    transform rotateZ(360deg)
+//- 两侧能量条自动充能
+for num in (1..100)
+  .pace .pace-progress[data-progress-text={"'" + num + "%'"}] ~ .pace-activity::before{clip-path: inset(unit(100 - num,'%') 0% 0% 0%)}
+  .pace .pace-progress[data-progress-text={"'" + num + "%'"}] ~ .pace-activity::after{clip-path: inset(unit(100 - num,'%') 0% 0% 0%)}
+

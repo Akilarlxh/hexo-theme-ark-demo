@@ -1,0 +1,20 @@
+script.
+  if ('serviceWorker' in navigator) {
+  if (navigator.serviceWorker.controller) {
+    navigator.serviceWorker.addEventListener('controllerchange', function() {
+      var response = fetch('/json/commits.json').then(res => res.json().then(json =>{
+          var commitjson = json;
+          for(var i=0;i<commitjson.length;i++){
+            var item= commitjson[i];
+            var commitmessage = (i+1) + '.' + commitjson[i].commit.message;
+            if (i<1){var commitmessagegroup = commitmessage}
+            else{var commitmessagegroup = commitmessagegroup +'<br>'+ commitmessage}
+          }
+          SAONotify("Latest Update",commitmessagegroup,"location.reload(true);");
+        })).catch(console.error);
+    })
+  }
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+    })
+  }

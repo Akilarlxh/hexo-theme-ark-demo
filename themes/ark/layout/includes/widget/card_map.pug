@@ -1,0 +1,8 @@
+if theme.aside.card_map.enable
+  input#card-map-anchor.card-widget-visible(type="radio" name="card-widget-visible" value="card-map")
+  .card-widget.card-map
+    .item-headline
+      i.fas.fa-globe-asia(aria-hidden="true")
+      span= _p('aside.card_map')
+    .pjax-reload
+      script#clstr_globe(async src="//clustrmaps.com/globe.js?d=bhg10kJ0GR0pQ4anEmWKoL0PRt_wVBOYqEMXj8g_K9w")

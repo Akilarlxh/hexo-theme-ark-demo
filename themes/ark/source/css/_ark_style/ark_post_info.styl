@@ -1,0 +1,177 @@
+// 标题版块
+#post
+  #post-info
+    position: relative
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 0 0 20px 0
+    *
+      color: var(--ark-post-item-font-color);
+      box-shadow: 1px 1px 2px inset var
+    (--ark-post-item-box-shadow);
+    .ark-post-info-cover
+      height: 100%;
+      display: flex;
+      position: absolute;  
+      top: 0
+      left: 0       
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 0
+      img
+        object-fit: cover;
+        width: 100%;
+        height: 100%
+        z-index: 1;
+        opacity: 0.8
+    .post-meta-date
+      width: 350px;
+      font-size: 16px;
+      text-shadow: 2px 2px 3px black;
+      background: rgba(153, 54, 44,0.8);
+      font-family: 'UnidreamLED';
+      display: flex;
+      position: absolute;
+      height: 30px;
+      top: calc(50% - 15px);
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      *
+        transition: all 0.3s linear
+      .post-meta-date-item-first
+        position: absolute;
+        opacity: 0
+      .post-meta-date-item-second
+        position: absolute;
+        opacity: 1
+      &:hover
+        .post-meta-date-item-first
+          opacity: 1
+        .post-meta-date-item-second
+          opacity: 0
+
+    .ark-post-item-info
+      flex-direction: column;
+      background: var(--ark-post-item-screen)
+      height: 100%;
+      display: flex;
+      position: absolute
+      top: 0
+      right: 0           
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 0;
+      .ark-post-item-title
+        border-style: dotted;
+        border-width: 0 0 3px 0;
+        width: 100%;
+        height: 100px;
+        line-height: 100px;
+        color: var(--ark-post-item-font-color);
+        font-family: 'TaikoMagic';
+        border-color: rgba(153, 54, 44,0.8);
+        display: block
+        overflow hidden
+        h1.post-title
+          float left
+          height: 100px;
+          white-space nowrap
+          animation text-roll 4s cubic-bezier(.6, 0, .5, 1) alternate infinite
+          min-width 100%
+          text-align: center;
+      #post-meta
+        color: var(--ark-post-item-font-color);
+        text-align: start;
+        height: 100px;
+        width: 100%;
+        display: flex
+        align-items: flex-end;
+        justify-content: flex-end;
+        align-content: flex-end
+        flex-wrap: wrap;
+        flex-direction: row;
+        overflow: hidden;
+        input[type="checkbox"]
+          display: none;
+          &:checked
+            &+ label
+              width: 100%  
+              transition: width ease-in-out 0.5s
+        & > label
+          width: 20px;
+          height: 22px;
+          line-height: 22px;
+          max-width: fit-content;
+          white-space: nowrap;
+          overflow: hidden;
+          transition: width ease-in-out 0.5s
+          &:hover
+            width: 100%  
+            transition: width ease-in-out 0.5s
+
+
+    .ark-post-info-decoration
+      width: 150px;
+      height: 150px;
+      opacity: 0.3;
+      position: absolute;
+      top: calc(50% - 75px);
+      left: calc(50% - 75px);
+      z-index: -1
+//异形边框仅在宽屏生效
+@media screen and (min-width: 768px)
+  #post
+    #post-info
+      clip-path: polygon(20px 20px, 0 40px, 0 calc(100% - 20px), 20px 100%, 100px 100%, 120px calc(100% - 20px), calc(50% - 20px) calc(100% - 20px), 50% 100%, calc(100% - 20px) 100%, 100% calc(100% - 20px), 100% 40px, calc(100% - 20px) 20px, calc(50% + 80px) 20px, calc(50% + 60px) 0, calc(50% - 60px) 0, calc(50% - 80px) 20px);
+      .ark-post-info-cover
+        width: calc(25% + 100px);
+        clip-path: polygon(0 0,100% 0,calc(100% - 200px) 100%,0 100%);
+      .post-meta-date
+        transform: rotateZ(-45deg);
+        left: calc(25% - 175px);
+      .ark-post-item-info
+        width: calc(75% + 100px);
+        clip-path: polygon(100% 0,100% 100%,0 100%,200px 0 );
+        padding: 0 0 0 140px;
+        .ark-post-item-title
+          padding: 0 10px 0 20px;
+          h1.post-title
+            font-size: 36px;
+        #post-meta
+          padding: 0px 20px 20px 0px;
+          font-size: 16px;
+          line-height: 1;
+@media screen and (max-width:768px)
+  #post
+    #post-info
+      .ark-post-info-cover
+        width: calc(25% + 50px);
+        clip-path: polygon(0 0,100% 0,calc(100% - 100px) 100%,0 100%);
+      .post-meta-date
+        transform: rotateZ(-60deg);
+        left: calc(25% - 175px);
+      .ark-post-item-info
+        width: calc(75% + 50px);
+        clip-path: polygon(100% 0,100% 100%,0 100%,100px 0 );
+        padding: 0 0 0 60px;
+        .ark-post-item-title
+          padding: 0 20px 0 40px;
+          h1.post-title
+            font-size: 32px;
+        #post-meta
+          padding: 0px 15px 20px 5px;
+          font-size: 16px;
+          line-height: 20px;
+
+
+
+
+

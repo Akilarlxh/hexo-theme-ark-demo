@@ -1,0 +1,32 @@
+//- 顶栏容器
+#ark-nav-box.ark-nav-box
+  .ark-nav
+    .ark-nav-message-container
+      .ark-nav-message-item.ark-nav-message-weather
+        #he-plugin-simple.ark-nav-message-weather-box
+      .ark-nav-message-item.ark-nav-message-date
+        #ark-nav-message-date-box.ark-nav-message-date-box
+        - var pagedescr = page.description ? page.description : '欢迎光临糖果屋，愿你有愉快的一天'
+        - var subtitle = page.subtitle ? page.subtitle : page.title
+        #ark-nav-message-title-box.ark-nav-message-title-box
+          if is_post()
+            a#site-name(title=pagedescr href=url_for('/')) #[=subtitle]  
+          else if is_page()
+            a#site-name(title=pagedescr href=url_for('/')) #[=subtitle]
+          else
+            a#site-name(title=pagedescr onclick='btf.scrollToDest(0, 500)') #[=config.title]
+      .ark-nav-message-item.ark-nav-message-function
+        #ark-menu-random-post.ark-menu-random-post
+          .ark-nav-function.faa-parent.animated-hover(title=_p('nav.random') onclick="toRandomPost()")
+            svg.faa-tada.icon(style="height:25px;width:25px" aria-hidden="true")
+              use(xlink:href='#icon-partial-discharge')
+        if (theme.algolia_search.enable || theme.local_search.enable)
+          #search-button
+            a.ark-nav-function.search.faa-parent.animated-hover(title=_p('search.title'))
+              svg.faa-tada.icon(style="height:25px;width:25px" aria-hidden="true")
+                use(xlink:href='#icon-camera-GOTO_PRESET' )
+        
+        #ark-menu-start-btn.ark-menu-start-btn
+          a.ark-nav-function.faa-parent.animated-hover(title=_p('nav.menu-item'))
+            svg.faa-tada.icon(style="height:25px;width:25px" aria-hidden="true")
+              use(xlink:href='#icon-menu-zizhanbaowei')

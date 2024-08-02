@@ -1,0 +1,26 @@
+if theme.preloader.enable
+  case theme.preloader.load_style
+    when 'ark'
+      include ./load_style/ark.pug
+    when 'doodle'
+      include ./load_style/doodle.pug
+    when 'gear'
+      include ./load_style/gear.pug
+    when 'ironheart'
+      include ./load_style/ironheart.pug
+    when 'linkstart'
+      include ./load_style/linkstart.pug
+    when 'pokeball'
+      include ./load_style/pokeball.pug
+    when 'scarecrow'
+      include ./load_style/scarecrow.pug
+    when 'spincat'
+      include ./load_style/spincat.pug
+    when 'triangles'
+      include ./load_style/triangles.pug
+    when 'wizard'
+      include ./load_style/wizard.pug
+    when 'image'
+      include ./load_style/image.pug
+    default
+      include ./load_style/default.pug

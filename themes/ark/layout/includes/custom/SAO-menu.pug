@@ -1,0 +1,82 @@
+#SAO-back
+  #SAO-menu
+    #SAO-menu-content
+      - var util_list = site.data.util_list || theme.SAO_Utils.util_list
+      .utils-list
+        if util_list
+          each util in util_list
+            .utils-list-item
+              if util.panel
+                .user-panel(style=`top:`+ util.panel.top + `;`)
+                  .user-panel-name!= util.panel.title
+                  .user-panel-img
+                    - var userImg = util.panel.img ? url_for(util.panel.img) : '/img/info.png'
+                    img(src=userImg)
+                  .user-panel-properties!=`${util.panel.prop}`
+              if util.link
+                i(class=util.icon onclick=`clickAudio();setTimeout(function(){SAOclose();linkStart('` +url_for(util.link)+ `')},500);`)
+              else if util.action
+                i(class=util.icon onclick=`clickAudio();setTimeout(function(){SAOclose();` + util.action + `},500);`)
+              else
+                i(class=util.icon onclick="panelAudio();UtilsClick()")
+                if util.menu_list
+                  - var menuTop = util.menutop ? util.menutop : -((util.menu_list.length)*40/2+43) 
+                  .menu-list(style=`top:` + menuTop + `px;`)
+                    each item in util.menu_list
+                      .menu-list-item
+                        if item.link
+                          i(class=item.icon onclick=`clickAudio();setTimeout(function(){SAOclose();linkStart('` +url_for(item.link)+ `')},500);`)= item.name
+                        else if item.action
+                          i(class=item.icon onclick=`clickAudio();setTimeout(function(){SAOclose();` + item.action + `},500);`)= item.name
+                        else
+                          i(class=item.icon onclick='panelAudio();MenusClick()')= item.name
+                        if item.child_list
+                          - var childTop = item.childtop ? item.childtop : -((item.child_list.length)*40/2+20) 
+                          .menu-child(style=`top:` + childTop + `px;`)
+                            each child in item.child_list
+                              .menu-list-child
+                                if child.link
+                                  i(class=child.icon onclick=`clickAudio();setTimeout(function(){SAOclose();linkStart('` +url_for(child.link)+ `')},500);`)= child.name
+                                else if child.action
+                                  i(class=child.icon onclick=`clickAudio();setTimeout(function(){SAOclose();` + child.action + `},500);`)= child.name
+                                else
+                                  i(class=child.icon)= child.name
+        if theme.SAO_Utils.Instructions ? theme.SAO_Utils.Instructions : true
+          .utils-list-item
+            .user-panel
+              .user-panel-name Instructions
+              .user-panel-img
+                img(src='/img/siteicon/favicon.png')
+              .user-panel-properties 
+                h4 欢迎使用SAO_Utils_Web 2.0
+                p 点按选项可以持续显示下级菜单。您可以通过按住<kbd>ctrl</kbd>+<kbd>右键</kbd>来恢复使用原生右键菜单，更多内容可点击右侧Option按钮访问教程或Help按钮加入糖果屋QQ群。
+                center ©Akilarの糖果屋
+            i.fa.fa-cog(onclick="panelAudio();UtilsClick()")
+            .menu-list(style="top:-103px;")
+              .menu-list-item
+                i.fa.fa-tools(onclick="clickAudio();setTimeout(function(){SAOclose();linkStart('https://akilar.top/posts/fd243d7/')},500);") Option
+              .menu-list-item
+                i.fa.fa-question-circle(onclick="clickAudio();setTimeout(function(){SAOclose();linkStart('https://jq.qq.com/?_wv=1027&k=a08BZRzs')},500);") Help
+              .menu-list-item
+                i.fa.fa-sign-out-alt(onclick="alertAudio();openLogout()") Logout
+        .utils-list-item
+          i.fa.fa-power-off(onclick='alertAudio();SAOKeepOff()' title="永久关闭SAO右键菜单")
+if theme.SAO_Utils.Instructions ? theme.SAO_Utils.Instructions : true
+  #SAO-logout
+    .logout-title Alert
+    .logout-alert 是否确认退出?
+    .logout-button
+      span.logout-confirm
+        button.far.fa-circle(type="button" name="confirm" onclick="clickAudio();confirmLogout()")
+      span.logout-cancel
+        button.fa.fa-times(type="button" name="cancel" onclick="panelAudio();cancelLogout()")
+if theme.SAO_Utils.music.enable
+  - var Launcher = theme.SAO_Utils.music.Launcher ? url_for(theme.SAO_Utils.music.Launcher) : 'https://npm.elemecdn.com/akilar-candyassets/audio/Launcher.mp3'
+  - var Click = theme.SAO_Utils.music.Click ? url_for(theme.SAO_Utils.music.Click) : 'https://npm.elemecdn.com/akilar-candyassets/audio/Click.mp3'
+  - var Panel = theme.SAO_Utils.music.Panel ? url_for(theme.SAO_Utils.music.Panel) : 'https://npm.elemecdn.com/akilar-candyassets/audio/Panel.mp3'
+  - var Alert = theme.SAO_Utils.music.Alert ? url_for(theme.SAO_Utils.music.Alert) : 'https://npm.elemecdn.com/akilar-candyassets/audio/Alert.mp3'
+  audio#SAOlauncher(src=Launcher)
+  audio#SAOClick(src=Click)
+  audio#SAOPanel(src=Panel)
+  audio#SAOAlert(src=Alert)
+script(async src=url_for(theme.akilar.SAO_Utils))

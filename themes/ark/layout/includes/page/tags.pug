@@ -1,0 +1,5 @@
+.tag-cloud-list.is-center
+  if theme.aside.card_tags.ark
+    .card-tag-cloud!= arkTags({source: site.tags, posts: site.posts.length,unit: 'em'})
+  else if theme.aside.card_tags.color
+    !=cloudTags({source: site.tags, minfontsize: 1.2, maxfontsize: 2.1, limit: 0, unit: 'em'})

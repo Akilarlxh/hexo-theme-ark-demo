@@ -1,0 +1,145 @@
+#archive,
+#category,
+#tag
+  backdrop-filter: blur(5px)
+.article-sort-title
+  font-family: 'UnidreamLED', 'TaikoMagic';
+  background: transparent;
+  display: block;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--pagenumber-color);
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5)
+  overflow: hidden;
+  margin: 0 3px 0 0;
+  height: 45px;
+  width: 100%;
+  text-align: center;
+  .article-sort-title-text
+    float left
+    white-space nowrap
+    animation text-roll 4s cubic-bezier(.6, 0, .5, 1) alternate infinite
+    min-width 100%
+.ark-article-sort-container
+  font-family: 'UnidreamLED','TaikoMagic';
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5)
+  display: block;
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(to bottom, transparent,transparent 25px,var(--pagenumber-background-color) 25px,var(--pagenumber-background-color) 50px,transparent 50px,transparent);
+  .ark-article-sort-year
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 100px;
+    background: var(--pagenumber-current-color)
+    color: var(--pagenumber-color);
+    margin: 20px 20px;
+    clip-path: polygon(0 0,5px 5px,5px 30px,0 35px,100% 35px,calc(100% - 5px) 30px,calc(100% - 5px) 5px,100% 0)
+    & > *
+      margin: 0 3px
+    svg.icon
+      width: 1.2em
+      height: 1.2em
+  .ark-article-sort-item
+    display: flex;
+    position: relative
+    height: 300px;
+    width: auto;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 20px;
+    padding: 40px 0 0 0;
+    &::before
+      content: "";
+      position: absolute;
+      height: 35px;
+      width: 100px;
+      top: 0;
+      left: calc(50% - 50px);
+      background: var(--pagenumber-current-color)
+      clip-path: polygon(0 0,5px 5px,5px 30px,0 35px,100% 35px,calc(100% - 5px) 30px,calc(100% - 5px) 5px,100% 0)
+
+    &::after
+      content: "";
+      position: absolute;
+      height: 18px;
+      width: 16px;
+      top: 23px;
+      left: calc(50% - 8px);
+      background: var(--pagenumber-color)
+      clip-path: polygon(0 0,100% 0,50% 100%)
+    .ark-article-sort-item-date
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      width: auto;
+      color: var(--pagenumber-color)
+      time.post-meta-date-created,
+      time.post-meta-date-updated
+        background: var(--pagenumber-background-color);
+        padding: 3px 15px;
+        line-height: 1;
+        border-radius: 3px;
+      span.post-meta-date-split
+        margin: 0 5px
+    label.ark-article-sort-item-info
+      display: flex;
+      flex-direction: column;
+      height: 200px;
+      width: auto;
+      position: relative;
+      padding: 5px 5px
+      align-items: center;
+      input[type="checkbox"]
+        display: none
+        &:checked ~ .ark-article-sort-item-detail
+          display: flex
+      .ark-article-sort-item-title
+        display: flex;
+        height: 30px;
+        color: var(--pagenumber-color)
+        width: auto;
+        line-height: 1;
+        font-size: 20px;
+        padding: 5px 10px;
+        justify-content: center;
+        align-items: center;
+        &:hover ~ .ark-article-sort-item-detail
+          display: flex
+      a.ark-article-sort-item-detail
+        width: 200px;
+        height: auto;
+        overflow: hidden;
+        display: none;
+        color: var(--pagenumber-color)
+        font-size: 16px;
+        position: relative;
+        .ark-article-sort-item-img
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 35px;
+          width: 35px;
+          clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+          img
+            width: 35px;
+            height: 35px;
+            object-fit: cover;
+        .ark-article-sort-item-descr
+          background: radial-gradient(black, transparent);
+          text-indent: 40px;
+          font-size: 16px;
+          padding: 5px 5px;
+          clip-path: polygon(42px 0%, 42px 24px, 24px 42px, 0 42px, 0% 100%, 99% 100%, 100% 0%);
+          font-family: 'ZhuZiAYuanJWD'
+  #pagination
+    width: fit-content;
+    padding: 0 50px
+    .pagination
+      margin: 20px 0 0 0
+      &::after
+        content: none

@@ -1,0 +1,68 @@
+//- 提供背景遮罩和定位
+#ark-menu-box.arksink.arkend
+  //- 左侧水平仪
+  .ark-menu-horizontal-left
+    .ark-menu-horizontal-left-line
+  //- 右侧水平仪
+  .ark-menu-horizontal-right
+    .ark-menu-horizontal-right-line
+  //- 瞄准镜上方水平仪
+  .ark-menu-horizontal-top
+    .ark-menu-horizontal-top-line
+  //- 瞄准镜下方水平仪
+  .ark-menu-horizontal-bottom
+    .ark-menu-horizontal-bottom-line
+  //- 中心瞄准镜&菜单容器
+  #ark-menu.ark-menu
+    //- 一级菜单横向滚动
+    .menu-item-container
+      .swiper-wrapper.menu-item-wrapper
+        each value, label in theme.menu
+          if typeof value !== 'object'
+            //- 一级菜单项
+            .menu-item-first.swiper-slide
+              .site-page.faa-parent.animated-hover
+                if value.split('||')[1]
+                  - var icon_value = trim(value.split('||')[1])
+                  - var anima_value = value.split('||')[2] ? trim(value.split('||')[2]) : 'faa-tada'
+                  if icon_value.substring(0,2)=="fa"      
+                    i.fa-fw(class=icon_value + ' ' + anima_value)
+                  else if icon_value.substring(0,4)=="icon"          
+                    svg.icon(aria-hidden="true" class=anima_value)
+                      use(xlink:href=`#`+ icon_value)
+                span.site-page-link(onclick=`ark_menu_link('` +url_for(trim(value.split('||')[0]))+ `')`)=label
+          else
+            //- 若含有子菜单
+            //- 一级菜单项
+            .menu-item-first.swiper-slide.has-child
+              //- 二级菜单容器
+              .menu-item-second-container
+                //- 二级菜单父选项图标作为二分魔方左半屏
+                .site-cube-left.faa-parent.animated-hover
+                  if label.split('||')[1]
+                    - var icon_label = trim(label.split('||')[1])
+                    - var anima_label = label.split('||')[2] ? trim(label.split('||')[2]) : 'faa-tada'
+                    if icon_label.substring(0,2)=="fa"      
+                      i.fa-fw(class=icon_label + ' ' + anima_label)
+                    else if icon_label.substring(0,4)=="icon"    
+                      svg.icon(aria-hidden="true" class=anima_label)
+                        use(xlink:href=`#`+ icon_label)
+                  span.site-page-link=trim(label.split('||')[0])
+                //- 二级菜单子选项图标作为二分魔方右半屏
+                .site-cube-right
+                  each val,lab in value 
+                    .menu-item-second
+                      .faa-parent.animated-hover.site-page
+                        if val.split('||')[1]
+                          - var icon_val = trim(val.split('||')[1])
+                          - var anima_val = val.split('||')[2] ? trim(val.split('||')[2]) : 'faa-tada'
+                          if icon_val.substring(0,2)=="fa"      
+                            i.fa-fw(class=icon_val + ' ' + anima_val)
+                          else if icon_val.substring(0,4)=="icon"
+                            svg.icon(aria-hidden="true" class=anima_val)
+                              use(xlink:href=`#`+ icon_val)
+                        span.site-page-link(onclick=`ark_menu_link('` +url_for(trim(val.split('||')[0]))+ `')`)=lab
+      .ark-menu-pagination
+  svg#ark-menu-end-btn.icon(aria-hidden="true" class=anima_val)
+    use(xlink:href='#icon-YunTai-unfold')
+  

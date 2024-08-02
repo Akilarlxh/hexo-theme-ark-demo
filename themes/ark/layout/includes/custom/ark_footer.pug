@@ -1,0 +1,39 @@
+#ark-footer-wraper
+  //- 页脚基本信息
+  .ark-footer-container
+    .ark-footer-left-corner
+      //- 徽标版块
+      #ark-footer-bdage-container
+        .ark-footer-bdage.swiper-wrapper
+          each item in theme.footer.bdageitem
+            a.ark-bdage-item.swiper-slide(href=url_for(item.link) title=item.message target="_blank")
+              svg.icon.ark-decoration(aria-hidden="true")
+                use(xlink:href=`#`+item.icon)
+              span= item.text
+      //- 作者信息
+      if theme.footer.owner.enable
+        - var now = new Date()
+        - var nowYear = now.getFullYear()
+        if theme.footer.owner.since && theme.footer.owner.since != nowYear
+          .ark-footer-copyright!= `&copy;${theme.footer.owner.since} - ${nowYear} By ${config.author}`
+        else
+          .ark-footer-copyright!= `&copy;${nowYear} By ${config.author}`
+      //- 版权信息
+      if theme.footer.copyright
+        .ark-footer-framework-info
+          span= _p('footer.framework') + ' '
+          a(href='https://hexo.io')= 'Hexo'
+          span.footer-separator |
+          span= _p('footer.theme') + ' '
+          a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
+      //- 备案信息
+      if theme.footer.record.enable
+        a.ark-footer-record(href=url_for(theme.footer.record.link) target="_blank" title=theme.footer.record.text)!= theme.footer.record.text
+      //- 留块空白放放自定义信息
+      if theme.footer.custom_text
+        .footer_custom_text!=`${theme.footer.custom_text}`
+    //- 右侧自定义信息
+    .ark-footer-right-corner#workboard
+    //- 电子钟版块
+    script(async src='/js/custom/runtime.js')
+  

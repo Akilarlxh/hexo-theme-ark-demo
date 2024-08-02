@@ -1,0 +1,118 @@
+//default color:
+:root
+  --card-widget-background: rgba(80, 80, 80, 0.8) //卡片整体背景色
+  --card-widget-color: #ffffff //卡片字体颜色
+  --card-widget-content-background: rgba(50, 50, 50, 0.6) //内容版块背景色
+  --card-widget-content-border: rgba(117, 118, 120,0.8) //内容版块边框颜色
+  --card-widget-title-background: rgba(40, 40, 40,0.95) //卡片标题背景色
+  --card-widget-title-color: #ffffff //卡片标题字体颜色
+  --card-widget-title-corner-background: rgba(153, 54, 44,0.8) //卡片角标背景色
+  --card-widget-title-corner-color: #ffffff //卡片角标字体颜色
+[data-theme="dark"]
+  --card-widget-background: rgba(39, 66, 69,0.6)
+  --card-widget-color: #ffffff
+  --card-widget-content-background: rgba(23, 25, 27, 0.5)
+  --card-widget-content-border: rgba(0,78,119, 0.5)
+  --card-widget-title-background: rgba(10, 17, 35, 0.5)
+  --card-widget-title-color: #004e77
+  --card-widget-title-corner-background: #37708f
+  --card-widget-title-corner-color: #92cef1
+
+//内部版块样式，因为侧栏卡片内部的id，class不统一，所以单独写成一个方法，方便下面调用
+ark_card_widget_content()
+  position: relative
+  margin: 25px 5px 5px 5px!important
+  background: var(--card-widget-content-background)
+  padding: 5px 5px 5px 8px
+  border: 2px solid var(--card-widget-content-border)
+  border-top-right-radius: 3px
+  border-top-left-radius: 10px
+  border-bottom-right-radius: 3px    
+  border-bottom-left-radius: 10px
+  clip-path: polygon(0 10px, 10px 0, calc(100% - 3px) 0, 100% 3px, 100% calc(100% - 3px), calc(100% - 3px) 100%, 10px 100%, 0 calc(100% - 10px))
+  box-shadow: 0 0 5px var(--card-widget-content-border) inset
+  &:not(.card-friend-link-container) //这个是用来排除不需要的卡片类的
+    &::before //内容版块左边的凹线装饰
+      content: ""
+      width: 0px
+      height: calc(100% - 20px)
+      position: absolute
+      left: 0
+      top: 5px
+      background: var(--card-widget-content-background)
+      border-top: 5px solid var(--card-widget-content-border)
+      border-right: 5px solid var(--card-widget-content-border)
+      border-bottom: 5px solid var(--card-widget-content-border)
+      border-left: 5px solid transparent     
+      clip-path: polygon(0 0,7px 5px,7px calc(100% - 5px), 0 100%)
+.card-widget
+  &:not(.card-clock)
+    font-family: 'SAOUI','ZhuZiAYuanJWD' //字体样式，可以自行替换
+    background: linear-gradient(to bottom,transparent 30px,var(--card-widget-background) 31px,var(--card-widget-background))!important
+    padding: 0px!important
+    clip-path: polygon(0 0,100% 0,100% 30px,calc(100% - 60px) 30px,calc(100% - 50px) 45px,calc(100% - 5px) 45px,100% 50px,100% calc(100% - 5px),calc(100% - 5px) 100%,5px 100%,0 calc(100% - 5px),0 45px,10px 30px,0 30px)
+    .item-headline
+      border-top: 8px solid var(--card-widget-title-corner-background)
+      border-left: 8px solid var(--card-widget-title-corner-background)
+      box-shadow: 0px 0px 10px var(--card-widget-content-border) inset
+      border-top-left-radius: 3px
+      border-top-right-radius: 20px
+      border-bottom-right-radius: 3px    
+      border-bottom-left-radius: 20px      
+      background: var(--card-widget-title-background)
+      color: var(--card-widget-color)
+      min-width: 8em
+      width: fit-content
+      clip-path: polygon(0 0,55px 0,60px 10px,calc(100% - 15px) 10px,100% 30px,100% 100%,30px 100%,8px 30px,0 25px)
+      padding: 0px 1em 0px 1em
+      margin: 0px 0px -20px 0px
+      position: sticky;
+      top: 0px;
+      left: 10px;
+      &:after
+        content: "akilar"
+        position: absolute
+        bottom: 0
+        font-size: 12px
+        display: block
+        right: 0
+        line-height: 1em
+        color: var(--card-widget-title-corner-color)
+        width: fit-content
+        height: 1em
+        padding: 0 5px 0 10px
+        background: var(--card-widget-title-corner-background)
+        clip-path: polygon(5px 0,100% 0,100% 100%,0 100%)
+    //以下是针对不同卡片的单独样式兼容性适配
+    //读者可以仿照以下内容对卡片的内容版块套上边框和调整字体颜色
+    &#card-toc //目录百分比样式适配
+      .toc-percentage
+        position: absolute
+        margin: -7px 0px 0px 10px!important
+        font-size: 26px!important
+      .toc-content
+        ark_card_widget_content()
+        .toc-link
+          color: var(--card-widget-color)!important //覆盖目录默认字体颜色
+    .author-main-content
+      ark_card_widget_content()
+    .card-friend-link-container //友链通讯录内容版块样式适配
+      ark_card_widget_content()
+    .aside-list //最新文章，相关文章，最新评论内容版块适配
+      ark_card_widget_content()
+      .aside-list-item
+        .thumbnail
+          img
+            clip-path: polygon(50% 0%,95.5% 25%,95.5% 75%,50% 100%,4.5% 75%,4.5% 25%) //头像框六边形切割
+        .content        
+          .title
+            color: var(--card-widget-color)!important //覆盖最新文章默认字体颜色
+        .comment
+          color: var(--card-widget-color)!important //覆盖最新评论默认字体颜色
+    .card-tag-cloud //标签卡片内容版块适配
+      ark_card_widget_content()
+
+    .webinfo //网站信息卡片内容版块适配
+      ark_card_widget_content()
+      .webinfo-item
+        color: var(--card-widget-color)!important //覆盖网站信息卡片默认字体颜色

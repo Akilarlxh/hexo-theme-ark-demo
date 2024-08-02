@@ -1,0 +1,16 @@
+case theme.live2d_widget.version
+  when 'v2'
+    script(defer src=url_for(theme.live2d_widget.v2_path))
+  when 'v3'
+    style.
+      .live2d {
+      position: fixed;
+      right: 30px;
+      bottom: -30px;
+      width: 360px !important;
+      height: 310px !important;
+      z-index: 998;
+      }
+    #live2d.live2d
+      canvas#live2dm.live2d(style='z-index: 999!important;')
+    script(defer src=url_for(theme.live2d_widget.v3_path))

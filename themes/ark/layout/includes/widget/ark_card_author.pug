@@ -1,0 +1,38 @@
+if theme.aside.card_author.enable
+  input#card-author-anchor.card-widget-visible(type="radio" name="card-widget-visible" value="card-author-anchor")
+  .card-widget.card-author
+    .item-headline
+      i.fa-solid.fa-circle-user
+      span= _p('aside.card_author')
+    .author-main-content
+      .author-check-content
+        label.author-info(for="author-info")      
+          input#author-info(type="checkbox" name="author-info")
+          .author-avatar
+            img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+          .author-name= config.author
+      .author-switch-content
+        input.switch-content(type="radio" name="switch-content" value="description")    
+        label.author-description-box       
+          .author-description!= theme.aside.card_author.description || config.description
+        input.switch-content(type="radio" name="switch-content" value="social" checked)
+        label.author-social-box
+          if theme.aside.card_author.button.enable
+            a.card-author-button(href=theme.aside.card_author.button.link)
+              i(class=theme.aside.card_author.button.icon)
+              span=theme.aside.card_author.button.text
+          if(theme.social)
+            .social-icons
+              !=fragment_cache('social', function(){return partial('includes/header/social')})
+        input.switch-content(type="radio" name="switch-content" value="site-data")
+        label.author-data-box
+          .site-data
+            a.data-item(href=url_for(config.archive_dir) + '/')
+              .data-name= _p('aside.articles')
+              .data-length= site.posts.length
+            a.data-item(href=url_for(config.tag_dir) + '/')
+              .data-name= _p('aside.tags')
+              .data-length= site.tags.length
+            a.data-item(href=url_for(config.category_dir) + '/')
+              .data-name= _p('aside.categories') 
+              .data-length= site.categories.length

@@ -1,0 +1,77 @@
+- icon: fas fa-address-book
+  panel:
+    title: Friends
+    prop: Welcome to Akilar の Candyhome !
+  menu_list:
+    - name: Link
+      icon: fa fa-link
+      link: /link/
+    - name: Pantner
+      icon: fas fa-fire-alt
+      action: RanklistBtn()
+- icon: fa fa-question-circle
+  panel:
+    title: Help
+    prop: <h4>Anything can I help you ?</h4><p>Tidio：开启在线聊天窗<br>Comment：直达评论区或留言板<br>Candyhome：加入糖果屋QQ群</p>
+  menu_list:
+    - name: Tidio
+      icon: fa fa-comment-dots
+      action: openTidio()
+    - name: Comments
+      icon: fa fa-comments
+      action: FixedCommentBtn()
+    - name: Candyhome
+      icon: fa fa-user-friends
+      link: https://jq.qq.com/?_wv=1027&k=a08BZRzs
+- icon: fa fa-tasks
+  panel:
+    title: Menu
+    prop: The menu of my blog
+  menu_list:
+    - name: Home
+      icon: fa fa-home
+      link: https://blog.akilar.top/
+    - name: Document
+      icon: fa fa-folder-open
+      child_list:
+        - name: Beautify
+          icon: fa fa-file-invoice
+          link: /posts/f99b208/
+        - name: Optimize
+          icon: fa fa-file-invoice
+          link: /posts/7c16c4bb/
+        - name: Tag_Plugins
+          icon: fa fa-file-invoice
+          link: /posts/615e2dec/
+        - name: Construct
+          icon: fa fa-file-invoice
+          link: /posts/6ef63e2d/
+    - name: Blog
+      icon: fa fa-blog
+      link: /
+    - name: Archives
+      icon: fa fa-archive
+      link: /archives/
+    - name: Categoties
+      icon: fa fa-folder-open
+      link: /categories/
+    - name: Tags
+      icon: fa fa-tags
+      link: /tags/
+- icon: fa fa-tools
+  panel:
+    title: Options
+    prop: <h4>Some userful scripts</h4><p>Random： 随机跳转站内文章<br>Search： 打开搜索窗口</p>Refresh： 刷新缓存
+  menu_list:
+    # - name: Mirror
+    #   icon: fa fa-indent
+    #   action: Mirror()
+    - name: Random
+      icon: fa fa-random
+      link: toRandomPost()
+    - name: Search
+      icon: fa fa-search
+      action: openSearch()
+    - name: Refresh
+      icon: fa-solid fa-arrows-rotate
+      action: SAONotify('Refresh','即将为您刷新页面缓存','location.reload(true);')

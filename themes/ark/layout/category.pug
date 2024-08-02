@@ -1,0 +1,18 @@
+extends includes/layout.pug
+
+block content
+  if theme.category_ui == 'index'
+    include ./includes/mixins/post-ui.pug
+    #recent-posts.recent-posts.category_ui
+      +postUI
+      include includes/pagination.pug
+  else
+    include ./includes/mixins/article-sort.pug
+    #category
+      .article-sort-title
+        .article-sort-title-text= _p('page.category') + ' - ' + page.category
+      .ark-article-sort-container
+        .swiper-wrapper.ark-article-sort-wrapper
+          +articleSort(page.posts)
+          .swiper-slide.ark-article-sort-pagination
+            include includes/pagination.pug

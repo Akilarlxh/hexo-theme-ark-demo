@@ -1,0 +1,55 @@
+#content-inner
+  #post
+    .post-copyright
+      margin: 20px 0 0 0
+      font-size: 16px;
+      position relative
+      font-family: 'TaikoMagic';
+      text-shadow: 1px 1px 3px black;
+      .post-copyright-title
+        font-size: 22px;
+        overflow hidden
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        span.post-copyright-transpond,
+        span.post-copyright-original
+          color: #3f3f3f;
+          background: #cecece;
+          text-shadow: 1px 1px 3px white;
+          padding: 3px 5px;
+          margin: 0 10px 0 0
+          border-radius: 5px;
+          
+      .post-copyright-link
+        overflow hidden
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        .post-copyright-url
+          margin: 0 10px 0 0
+      .post-copyright-license
+        overflow hidden
+        max-width: calc(100% - 140px);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      .post-copyright-decoration
+        position: absolute
+        font-size: 140px;
+        line-height: 140px;
+        right: 22px;
+        top: calc(50% - 65px);
+        opacity: 0.3;
+        z-index: -1;
+        pointer-events: none;
+// 窄屏取消部分效果
+@media screen and (max-width: 768px)
+  #content-inner
+    #post
+      .post-copyright
+        .post-copyright-decoration
+          display: none
+        .post-copyright-license
+          max-width: 100%;
+          -webkit-line-clamp: 3;
