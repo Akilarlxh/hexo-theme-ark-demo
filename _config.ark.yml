@@ -128,12 +128,12 @@ cover:
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    - url('https://img.zcool.cn/community/01b71361dd8ce311013f01cdc36e2a.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100')
-    - url('https://img.zcool.cn/community/01593e61dd8ce411013e8cd0aa8bab.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100')
-    - url('https://img.zcool.cn/community/0183d061dd8ce511013e8cd04451eb.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100')
-    - url('https://img.zcool.cn/community/01729c61dd8ce711013f01cd0f12a3.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100')
-    - url('https://img.zcool.cn/community/01a6b161e1626511013f01cd9953a2.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100')
-    - url('https://img.zcool.cn/community/01f28461e1626511013f01cd1d05d8.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100')
+    - https://img.zcool.cn/community/01b71361dd8ce311013f01cdc36e2a.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100
+    - https://img.zcool.cn/community/01593e61dd8ce411013e8cd0aa8bab.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100
+    - https://img.zcool.cn/community/0183d061dd8ce511013e8cd04451eb.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100
+    - https://img.zcool.cn/community/01729c61dd8ce711013f01cd0f12a3.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100
+    - https://img.zcool.cn/community/01a6b161e1626511013f01cd9953a2.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100
+    - https://img.zcool.cn/community/01f28461e1626511013f01cd1d05d8.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/format,webp/quality,q_100
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
   flink: https://npm.elemecdn.com/akiblog@1.0.2/img/404.gif
